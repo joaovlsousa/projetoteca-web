@@ -1,5 +1,7 @@
 import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
+import { AppSidebar } from '@/components/app-sidebar'
+import { SidebarProvider } from '@/components/ui/sidebar'
 import { useAuth } from '@/hooks/use-auth'
 
 export const Route = createFileRoute('/_app')({
@@ -8,7 +10,7 @@ export const Route = createFileRoute('/_app')({
 
 function RouteComponent() {
   const navigate = useNavigate()
-  const { token, clearToken } = useAuth()
+  const { token } = useAuth()
 
   useEffect(() => {
     if (!token) {
@@ -17,12 +19,9 @@ function RouteComponent() {
   }, [token, navigate])
 
   return (
-    <div>
-      Hello "/_app"!
-      <button type="button" onClick={clearToken}>
-        sair
-      </button>
+    <SidebarProvider>
+      <AppSidebar />
       <Outlet />
-    </div>
+    </SidebarProvider>
   )
 }
