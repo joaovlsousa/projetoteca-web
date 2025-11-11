@@ -39,15 +39,16 @@ export function AppSidebar() {
       <SidebarContent className="py-6">
         <SidebarMenu className="px-2">
           {links.map((link) => (
-            <SidebarMenuButton
-              key={link.path}
-              isActive={link.path === pathname}
-              tooltip={link.name}
-              className="cursor-pointer"
-            >
-              <link.icon className="size-4" />
-              {link.name}
-            </SidebarMenuButton>
+            <Link to={link.path} key={link.path}>
+              <SidebarMenuButton
+                isActive={link.path === pathname}
+                tooltip={link.name}
+                className="cursor-pointer"
+              >
+                <link.icon className="size-4" />
+                {link.name}
+              </SidebarMenuButton>
+            </Link>
           ))}
         </SidebarMenu>
       </SidebarContent>
