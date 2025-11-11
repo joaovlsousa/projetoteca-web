@@ -26,7 +26,7 @@ export function ProjectSettings({ projectId }: ProjectSettingsProps) {
             Update project
           </Button>
         </Link>
-        <Link to="/projects/$projectId/edit" params={{ projectId }}>
+        <Link to="/projects/$projectId/edit/image" params={{ projectId }}>
           <Button variant="ghost" size="sm" className="w-full justify-start">
             <ImageUpIcon className="size-3 mr-2" />
             Update image
