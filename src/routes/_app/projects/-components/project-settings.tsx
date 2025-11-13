@@ -6,6 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { DeleteProjectAlert } from './delete-project-alert'
 
 interface ProjectSettingsProps {
   projectId: string
@@ -21,17 +22,28 @@ export function ProjectSettings({ projectId }: ProjectSettingsProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-w-44 space-y-1.5">
         <Link to="/projects/$projectId/edit" params={{ projectId }}>
-          <Button variant="ghost" size="sm" className="w-full justify-start">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start font-normal"
+          >
             <PenIcon className="size-3 mr-2" />
             Update project
           </Button>
         </Link>
+
         <Link to="/projects/$projectId/edit/image" params={{ projectId }}>
-          <Button variant="ghost" size="sm" className="w-full justify-start">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start font-normal"
+          >
             <ImageUpIcon className="size-3 mr-2" />
             Update image
           </Button>
         </Link>
+
+        <DeleteProjectAlert projectId={projectId} />
       </DropdownMenuContent>
     </DropdownMenu>
   )

@@ -9,7 +9,7 @@ const RootLayout = () => (
     <QueryClientProvider client={queryClient}>
       <Outlet />
 
-      <Toaster richColors />
+      <Toaster />
     </QueryClientProvider>
   </CookiesProvider>
 )

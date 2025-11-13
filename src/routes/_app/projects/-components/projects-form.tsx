@@ -72,6 +72,7 @@ export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
     },
   })
 
+  const nameLength = form.watch().name.length
   const descriptionLength = form.watch().description.length
 
   return (
@@ -86,6 +87,13 @@ export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
               <FormControl>
                 <Input {...field} placeholder="My Project" autoComplete="off" />
               </FormControl>
+              <div className="flex items-center justify-between">
+                <FormDescription>Max of 50 characters.</FormDescription>
+                <div className="text-sm font-medium text-muted-foreground">
+                  <span>{nameLength}</span>
+                  <span> / 50</span>
+                </div>
+              </div>
               <FormMessage />
             </FormItem>
           )}
@@ -100,11 +108,12 @@ export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
                 <Textarea
                   {...field}
                   maxLength={300}
+                  spellCheck="false"
                   className="h-40 resize-none"
                 />
               </FormControl>
               <div className="flex items-center justify-between">
-                <FormDescription>Max of 200 characters.</FormDescription>
+                <FormDescription>Max of 300 characters.</FormDescription>
                 <div className="text-sm font-medium text-muted-foreground">
                   <span>{descriptionLength}</span>
                   <span> / 300</span>
