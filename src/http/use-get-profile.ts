@@ -2,9 +2,11 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 
 interface GetProfileResponse {
-  name: string
-  username: string
-  avatarUrl: string
+  user: {
+    name: string
+    username: string
+    avatarUrl: string
+  }
 }
 
 export function useGetProfile() {

@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import { cn } from '@/lib/utils'
 import { Logo } from './logo'
 import { Profile } from './profile'
+import { ProfileSkeleton } from './profile-skeleton'
 import { SignOutButton } from './sign-out-button'
 import { Separator } from './ui/separator'
 import {
@@ -60,7 +61,7 @@ export function AppSidebar() {
         )}
       >
         <div className="flex-1">
-          <Suspense>
+          <Suspense fallback={<ProfileSkeleton />}>
             <Profile />
           </Suspense>
         </div>
