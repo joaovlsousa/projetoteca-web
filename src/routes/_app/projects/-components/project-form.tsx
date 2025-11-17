@@ -21,10 +21,10 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import { compareObjectValues } from '@/lib/utils'
 
-interface ProjectsFormProps {
+interface ProjectFormProps {
   initialValues?: {
-    id: string
     name: string
     description: string
     type: 'frontend' | 'backend' | 'fullstack'
@@ -61,12 +61,13 @@ const formSchema = z
 
 export type FormValues = z.infer<typeof formSchema>
 
-export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
+export function ProjectForm({ initialValues, onSubmit }: ProjectFormProps) {
   const form = useForm<FormValues>({
     resolver: standardSchemaResolver(formSchema),
     defaultValues: {
       name: initialValues?.name || '',
       description: initialValues?.description || '',
+      type: initialValues?.type,
       githubUrl: initialValues?.githubUrl || '',
       deployUrl: initialValues?.deployUrl || '',
     },
@@ -75,9 +76,17 @@ export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
   const nameLength = form.watch().name.length
   const descriptionLength = form.watch().description.length
 
+  async function handleSubmit(values: FormValues) {
+    if (initialValues && compareObjectValues(initialValues, values)) {
+      return
+    }
+
+    await onSubmit(values)
+  }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         <FormField
           name="name"
           control={form.control}
@@ -191,10 +200,10 @@ export function ProjectsForm({ initialValues, onSubmit }: ProjectsFormProps) {
           {form.formState.isSubmitting ? (
             <>
               <Loader />
-              Creating...
+              Saving...
             </>
           ) : (
-            'Create'
+            'Save'
           )}
         </Button>
       </form>

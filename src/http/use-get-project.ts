@@ -1,8 +1,12 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 
-interface GetProjectsResponse {
-  projects: {
+interface GetProjectRequest {
+  projectId: string
+}
+
+interface GetProjectResponse {
+  project: {
     id: string
     name: string
     description: string
@@ -12,14 +16,20 @@ interface GetProjectsResponse {
     deployUrl: string | null
     createdAt: string
     updatedAt: string | null
-  }[]
+  }
 }
 
-export function useGetProjects() {
+export function useGetProject({ projectId }: GetProjectRequest) {
   return useSuspenseQuery({
-    queryKey: ['projects'],
+    queryKey: ['project', projectId],
     queryFn: async () => {
-      const response = await api.get<GetProjectsResponse>('/projects')
+      const response = await api.get<GetProjectResponse>(
+        `/projects/${projectId}`,
+      )
+
+      if (response.status === 204) {
+        return { project: null }
+      }
 
       return response.data
     },

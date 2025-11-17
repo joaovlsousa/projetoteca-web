@@ -4,7 +4,9 @@ import { useGetProjects } from '@/http/use-get-projects'
 import { ProjectCard } from './project-card'
 
 export function ProjectsGrid() {
-  const { data: projects } = useGetProjects()
+  const {
+    data: { projects },
+  } = useGetProjects()
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
