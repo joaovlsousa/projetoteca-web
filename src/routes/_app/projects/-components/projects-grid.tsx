@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { PlusIcon } from 'lucide-react'
-import { useGetProjects } from '@/http/use-get-projects'
+import { useGetProjects } from '@/hooks/http/use-get-projects'
 import { ProjectCard } from './project-card'
 
 export function ProjectsGrid() {

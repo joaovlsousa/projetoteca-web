@@ -1,4 +1,3 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 
 interface GetProjectsResponse {
@@ -15,13 +14,8 @@ interface GetProjectsResponse {
   }[]
 }
 
-export function useGetProjects() {
-  return useSuspenseQuery({
-    queryKey: ['projects'],
-    queryFn: async () => {
-      const response = await api.get<GetProjectsResponse>('/projects')
+export async function getProjects(): Promise<GetProjectsResponse> {
+  const response = await api.get<GetProjectsResponse>('/projects')
 
-      return response.data
-    },
-  })
+  return response.data
 }

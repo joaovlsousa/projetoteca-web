@@ -1,7 +1,7 @@
 import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { useEditProject } from '@/http/use-edit-project'
-import { useGetProject } from '@/http/use-get-project'
+import { useEditProject } from '@/hooks/http/use-edit-project'
+import { useGetProject } from '@/hooks/http/use-get-project'
 import { ProjectForm } from '@/routes/_app/projects/-components/project-form'
 
 interface EditProjectFormProps {

@@ -1,4 +1,4 @@
-import { useGetProfile } from '@/http/use-get-profile'
+import { useGetProfile } from '@/hooks/http/use-get-profile'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { useSidebar } from './ui/sidebar'

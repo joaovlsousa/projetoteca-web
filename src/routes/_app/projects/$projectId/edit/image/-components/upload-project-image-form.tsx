@@ -6,7 +6,7 @@ import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Loader } from '@/components/ui/loader'
-import { useUploadProjectImage } from '@/http/use-upload-project-image'
+import { useUploadProjectImage } from '@/hooks/http/use-upload-project-image'
 
 export function UploadProjectImageForm() {
   const [file, setFile] = useState<File | null>(null)

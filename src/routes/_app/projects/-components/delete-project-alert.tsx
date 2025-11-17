@@ -1,7 +1,7 @@
 import { Trash } from 'lucide-react'
 import { AlertDialog } from '@/components/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { useDeleteProject } from '@/http/use-delete-project'
+import { useDeleteProject } from '@/hooks/http/use-delete-project'
 
 interface DeleteProjectAlertProps {
   projectId: string

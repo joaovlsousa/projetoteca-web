@@ -11,7 +11,9 @@ export function useAuth() {
   }
 
   function clearToken() {
-    removeCookie('token')
+    removeCookie('token', {
+      path: '/',
+    })
   }
 
   const token = cookies.token ? String(cookies.token) : null
