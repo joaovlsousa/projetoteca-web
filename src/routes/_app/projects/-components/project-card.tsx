@@ -49,7 +49,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="flex flex-col space-y-2 pb-3 bg-soft rounded-md border-0 shadow-none">
+    <Card className="flex flex-col space-y-2 pb-3 bg-soft rounded-md border-0 shadow-none overflow-hidden">
       <CardContent className="flex-1 space-y-2">
         {project.imageUrl ? (
           <Dialog>
