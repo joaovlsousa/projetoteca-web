@@ -4,7 +4,7 @@ interface GetProjectRequest {
   projectId: string
 }
 
-interface GetProjectResponse {
+export interface GetProjectResponse {
   project: {
     id: string
     name: string

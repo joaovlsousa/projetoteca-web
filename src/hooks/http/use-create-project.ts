@@ -12,6 +12,7 @@ export function useCreateProject() {
     mutationFn: createProject,
     onSuccess: async ({ projectId }) => {
       toast.success('Project created')
+
       await queryClient.invalidateQueries({ queryKey: ['projects'] })
 
       navigate({ to: `/projects/${projectId}/edit/image` })
