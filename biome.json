@@ -28,6 +28,11 @@
 			"semicolons": "asNeeded"
 		}
 	},
+	"html": {
+		"assist": {
+			"enabled": true
+		}
+	},
 	"css": {
 		"parser": {
 			"tailwindDirectives": true
