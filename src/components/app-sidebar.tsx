@@ -19,7 +19,7 @@ import {
 
 const links = [
   {
-    name: 'Projects',
+    name: 'Projetos',
     path: '/projects',
     icon: FolderOpenIcon,
   },

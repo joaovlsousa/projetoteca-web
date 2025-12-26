@@ -1,4 +1,5 @@
 import { useLocation } from '@tanstack/react-router'
+import { useEffect, useState } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,9 +10,27 @@ import {
 import { SidebarTrigger } from './ui/sidebar'
 
 export function AppNavbar() {
-  const { href } = useLocation()
+  const [breadcrump, setBreadcrump] = useState<string>('')
+  const { pathname } = useLocation()
 
-  const breadcrumps = href.split('/').filter((path) => path)
+  useEffect(() => {
+    const paths = pathname.split('/')
+    const path = paths[paths.length - 1]
+
+    switch (path) {
+      case 'projects':
+        setBreadcrump('Seus projetos')
+        break
+
+      case 'create':
+        setBreadcrump('Criar novo projeto')
+        break
+
+      case 'edit':
+        setBreadcrump('Alterar dados do projeto')
+        break
+    }
+  }, [pathname])
 
   return (
     <div className="fixed z-10 w-full h-14 px-4 flex items-center gap-x-4 bg-soft border-b">
@@ -19,22 +38,11 @@ export function AppNavbar() {
 
       <Breadcrumb>
         <BreadcrumbList>
-          {breadcrumps.map((breadcrump, index) => (
-            <>
-              {index !== breadcrumps.length - 1 ? (
-                <>
-                  <BreadcrumbItem className="capitalize">
-                    {breadcrump}
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                </>
-              ) : (
-                <BreadcrumbItem className="capitalize">
-                  <BreadcrumbPage>{breadcrump}</BreadcrumbPage>
-                </BreadcrumbItem>
-              )}
-            </>
-          ))}
+          <BreadcrumbSeparator />
+
+          <BreadcrumbItem className="capitalize">
+            <BreadcrumbPage>{breadcrump}</BreadcrumbPage>
+          </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>

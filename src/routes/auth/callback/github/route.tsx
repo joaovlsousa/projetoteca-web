@@ -39,7 +39,7 @@ function RouteComponent() {
       </div>
 
       <p className="font-medium text-muted-foreground tracking-wide animate-pulse">
-        {isPending ? 'Searching for data...' : 'Redirecting...'}
+        {isPending ? 'Buscando dados...' : 'Redirecionando...'}
       </p>
     </main>
   )

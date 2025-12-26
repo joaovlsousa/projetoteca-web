@@ -19,7 +19,7 @@ export function SignOutButton() {
             <LogOutIcon className="text-red-500" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="right">Sign out</TooltipContent>
+        <TooltipContent side="right">Desconectar-se do app</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
