@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AppRouteRouteImport } from './routes/_app/route'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
-import { Route as AuthCallbackGithubRouteRouteImport } from './routes/auth/callback/github/route'
-import { Route as AppProjectsCreateIndexRouteImport } from './routes/_app/projects/create/index'
-import { Route as AppProjectsProjectIdEditIndexRouteImport } from './routes/_app/projects/$projectId/edit/index'
 import { Route as AppProjectsProjectIdEditImageIndexRouteImport } from './routes/_app/projects/$projectId/edit/image/index'
+import { Route as AppProjectsProjectIdEditIndexRouteImport } from './routes/_app/projects/$projectId/edit/index'
+import { Route as AppProjectsCreateIndexRouteImport } from './routes/_app/projects/create/index'
+import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
+import { Route as AppRouteRouteImport } from './routes/_app/route'
+import { Route as AuthCallbackGithubRouteRouteImport } from './routes/auth/callback/github/route'
+import { Route as IndexRouteImport } from './routes/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',

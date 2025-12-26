@@ -9,13 +9,13 @@ export function SignInWithGithubButton() {
     'redirect_uri',
     env.VITE_GITHUB_OAUTH_CLIENT_REDIRECT_URI,
   )
-  signInUrl.searchParams.set('scope', 'user:email')
+  signInUrl.searchParams.set('scope', 'read:user public_repo')
 
   return (
-    <a href={signInUrl.toString()} className="w-full">
-      <Button className="w-full" variant="secondary">
+    <a href={signInUrl.toString()}>
+      <Button size="lg" variant="default">
         <GithubIcon className="size-4" />
-        Continue with github
+        Conectar-se com o github
       </Button>
     </a>
   )

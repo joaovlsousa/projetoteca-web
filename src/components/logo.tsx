@@ -2,7 +2,6 @@ import { Activity } from 'react'
 
 function LogoSvg() {
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: <>
     <svg
       width={32}
       height={32}
@@ -10,7 +9,6 @@ function LogoSvg() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width={32} height={32} rx={4} fill="#000" />
       <path
         d="M14.638 24H8a2 2 0 01-2-2V9a2 2 0 012-2h3.9a2 2 0 011.69.9l.81 1.2a2 2 0 001.67.9H24a2 2 0 012 2v3.417"
         stroke="#fff"
@@ -32,7 +30,7 @@ interface LogoProps {
 
 export function Logo({ size = 'default' }: LogoProps) {
   return (
-    <div className="flex items-center gap-x-3">
+    <div className="flex items-center gap-x-2">
       <LogoSvg />
 
       <Activity mode={size === 'sm' ? 'hidden' : 'visible'}>
