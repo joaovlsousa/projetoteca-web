@@ -23,17 +23,6 @@ import {
 import { Textarea } from '@/components/ui/textarea'
 import { compareObjectValues } from '@/lib/utils'
 
-interface ProjectFormProps {
-  initialValues?: {
-    name: string
-    description: string
-    type: 'frontend' | 'backend' | 'fullstack'
-    githubUrl: string
-    deployUrl?: string
-  }
-  onSubmit: (values: FormValues) => Promise<void>
-}
-
 const formSchema = z
   .object({
     name: z.string('Name is required').min(3),
@@ -59,7 +48,18 @@ const formSchema = z
     }
   })
 
-export type FormValues = z.infer<typeof formSchema>
+type FormValues = z.infer<typeof formSchema>
+
+interface ProjectFormProps {
+  initialValues?: {
+    name: string
+    description: string
+    type: 'frontend' | 'backend' | 'fullstack'
+    githubUrl: string
+    deployUrl?: string
+  }
+  onSubmit: (values: FormValues) => Promise<void>
+}
 
 export function ProjectForm({ initialValues, onSubmit }: ProjectFormProps) {
   const form = useForm<FormValues>({

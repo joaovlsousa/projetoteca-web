@@ -9,7 +9,7 @@ export const Route = createFileRoute('/_app/projects/')({
 
 function RouteComponent() {
   return (
-    <div className="min-h-screen">
+    <div className="h-full">
       <Suspense fallback={<ProjectsGridSkeleton />}>
         <ProjectsGrid />
       </Suspense>

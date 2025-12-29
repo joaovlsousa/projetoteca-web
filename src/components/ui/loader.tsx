@@ -1,5 +1,10 @@
 import { LoaderIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-export function Loader() {
-  return <LoaderIcon className="size-4 animate-spin" />
+interface LoaderProps {
+  className?: string
+}
+
+export function Loader({ className }: LoaderProps) {
+  return <LoaderIcon className={cn('size-4 animate-spin', className)} />
 }

@@ -33,7 +33,7 @@ export function AppNavbar() {
   }, [pathname])
 
   return (
-    <div className="fixed z-10 w-full h-14 px-4 flex items-center gap-x-4 bg-soft border-b">
+    <div className="fixed z-10 w-full h-14 px-4 flex items-center gap-x-4 bg-sidebar border-b">
       <SidebarTrigger />
 
       <Breadcrumb>

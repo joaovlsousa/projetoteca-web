@@ -26,7 +26,7 @@ function RouteComponent() {
       <main className="relative w-full min-h-screen">
         <AppNavbar />
 
-        <div className="mt-14 p-6">
+        <div className="min-h-[calc(100vh-3.5rem)] mt-14 p-6">
           <Outlet />
         </div>
       </main>

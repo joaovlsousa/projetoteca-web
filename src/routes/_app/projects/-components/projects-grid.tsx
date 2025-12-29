@@ -17,10 +17,10 @@ export function ProjectsGrid() {
       <div>
         <Link
           to="/projects/create"
-          className="flex flex-col items-center justify-center gap-y-4 rounded-md aspect-video bg-soft"
+          className="flex flex-col items-center justify-center gap-y-4 rounded-md aspect-video bg-secondary"
         >
           <PlusIcon />
-          <span className="text-sm font-medium">Create project</span>
+          <span className="text-sm font-medium">Criar projeto</span>
         </Link>
       </div>
     </div>
