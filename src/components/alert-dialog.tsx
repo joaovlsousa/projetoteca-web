@@ -53,14 +53,14 @@ export function AlertDialog({
             disabled={isLoading}
             onClick={() => setIsOpen(false)}
           >
-            <DialogClose>Cancel</DialogClose>
+            <DialogClose>Cancelar</DialogClose>
           </Button>
           <Button
             variant="destructive"
             disabled={isLoading}
             onClick={handleConfirm}
           >
-            {isLoading ? <Loader /> : 'Continue'}
+            {isLoading ? <Loader /> : 'Continuar'}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -16,11 +16,11 @@ export function ProjectSettings({ projectId }: ProjectSettingsProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full">
-          <SettingsIcon className="size-5" />
+        <Button variant="secondary" size="icon" className="rounded-full group">
+          <SettingsIcon className="size-5 group-hover:rotate-12 transition duration-100" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-w-44 space-y-1.5">
+      <DropdownMenuContent className="max-w-56 p-2 space-y-1.5">
         <Link to="/projects/$projectId/edit" params={{ projectId }}>
           <Button
             variant="ghost"
@@ -28,7 +28,7 @@ export function ProjectSettings({ projectId }: ProjectSettingsProps) {
             className="w-full justify-start font-normal"
           >
             <PenIcon className="size-3 mr-2" />
-            Update project
+            Atualizar projeto
           </Button>
         </Link>
 
@@ -39,7 +39,7 @@ export function ProjectSettings({ projectId }: ProjectSettingsProps) {
             className="w-full justify-start font-normal"
           >
             <ImageUpIcon className="size-3 mr-2" />
-            Update image
+            Atualizar imagem
           </Button>
         </Link>
 

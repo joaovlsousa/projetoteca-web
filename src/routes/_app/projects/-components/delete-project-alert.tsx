@@ -16,8 +16,8 @@ export function DeleteProjectAlert({ projectId }: DeleteProjectAlertProps) {
 
   return (
     <AlertDialog
-      title="Delete project?"
-      description="You will not be able to undo this action later."
+      title="Excluir projeto?"
+      description="Você não poderá reverter essa ação depois."
       onConfirm={handleDeleteProject}
     >
       <Button
@@ -26,7 +26,7 @@ export function DeleteProjectAlert({ projectId }: DeleteProjectAlertProps) {
         className="w-full justify-start text-red-500 hover:text-red-600"
       >
         <Trash className="size-3 mr-2" />
-        Delete project
+        Excluir projeto
       </Button>
     </AlertDialog>
   )

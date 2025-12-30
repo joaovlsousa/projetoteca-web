@@ -1,4 +1,3 @@
-import { formatDistanceToNow } from 'date-fns'
 import {
   AlertCircleIcon,
   GithubIcon,
@@ -6,6 +5,7 @@ import {
   LinkIcon,
   ScanSearchIcon,
 } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -31,6 +31,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { formatDistanceToNow } from '@/lib/date-fns'
 import { ProjectSettings } from './project-settings'
 
 interface ProjectCardProps {
@@ -39,6 +40,11 @@ interface ProjectCardProps {
     name: string
     description: string
     type: 'frontend' | 'backend' | 'fullstack'
+    techs: {
+      id: string
+      name: string
+      imageUrl: string
+    }[]
     imageUrl: string | null
     githubUrl: string
     deployUrl: string | null
@@ -49,19 +55,19 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="flex flex-col space-y-2 pb-3 bg-soft rounded-md border-0 shadow-none overflow-hidden">
-      <CardContent className="flex-1 space-y-2">
+    <Card className="flex flex-col p-0 space-y-2 pb-3 rounded-md border-0 shadow-none overflow-hidden">
+      <CardContent className="px-0 flex-1 space-y-2">
         {project.imageUrl ? (
           <Dialog>
             <DialogTrigger asChild>
               <div className="relative group cursor-pointer">
                 <img
                   src={project.imageUrl}
-                  alt="Project screen"
+                  alt="Imagem do projeto"
                   className="aspect-video rounded-t-md"
                 />
 
-                <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 transition-all">
+                <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 transition-all duration-300">
                   <ScanSearchIcon />
                 </div>
               </div>
@@ -70,33 +76,58 @@ export function ProjectCard({ project }: ProjectCardProps) {
               <DialogTitle className="hidden" />
               <img
                 src={project.imageUrl}
-                alt="Project screen"
+                alt="Imagem do projeto"
                 className="aspect-video rounded-md"
               />
             </DialogContent>
           </Dialog>
         ) : (
-          <div className="w-full flex items-center justify-center gap-2 rounded-t-md bg-sidebar/30 aspect-video">
+          <div className="w-full flex items-center justify-center gap-2 rounded-t-md bg-secondary aspect-video">
             <AlertCircleIcon className="size-4 text-muted-foreground" />
 
             <span className="text-sm font-medium text-muted-foreground">
-              Image not found
+              Imagem não encontrada
             </span>
           </div>
         )}
 
         <div className="flex-1 px-2.5 space-y-1">
-          <CardTitle className="text-lg font-semibold">
-            {project.name}
-          </CardTitle>
-          <CardDescription className="text-sm font-medium text-muted-foreground text-justify">
+          <CardTitle className="text-lg font-medium">{project.name}</CardTitle>
+          <CardDescription className="text-sm text-muted-foreground text-justify">
             {project.description}
           </CardDescription>
+
+          <div className="flex flex-wrap itens-center mt-3 gap-1.5">
+            {project.techs.map((tech) => (
+              <Badge key={tech.id} variant="secondary" className="gap-x-2">
+                <img src={tech.imageUrl} alt={tech.name} className="size-3" />
+                <span>{tech.name}</span>
+              </Badge>
+            ))}
+          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="flex items-center justify-between">
-        <div className="flex items-center gap-x-3">
+      <CardFooter className="px-2.5 flex items-center justify-end gap-x-3">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                asChild
+                variant="secondary"
+                size="icon"
+                className="rounded-full"
+              >
+                <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                  <GithubIcon className="size-5" />
+                </a>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Repositório do github</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        {project.deployUrl && (
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -106,63 +137,31 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   size="icon"
                   className="rounded-full"
                 >
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                    <GithubIcon className="size-5" />
+                  <a href={project.deployUrl} target="_blank" rel="noreferrer">
+                    <LinkIcon className="size-5" />
                   </a>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>Code repository</TooltipContent>
+              <TooltipContent>Acessar projeto</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="secondary" size="icon" className="rounded-full">
+              <InfoIcon className="size-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="p-2 text-xs font-medium text-muted-foreground italic leading-relaxed">
+            <span>Criado {formatDistanceToNow(project.createdAt)}</span>
 
-          {project.deployUrl && (
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    asChild
-                    variant="secondary"
-                    size="icon"
-                    className="rounded-full"
-                  >
-                    <a
-                      href={project.deployUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <LinkIcon className="size-5" />
-                    </a>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>Access project</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          )}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <InfoIcon className="size-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="p-2 text-xs font-medium text-muted-foreground italic leading-relaxed">
-              <span>
-                Created{' '}
-                {formatDistanceToNow(project.createdAt, { addSuffix: true })}
-              </span>
+            {project.updatedAt && (
+              <span>Atualizado {formatDistanceToNow(project.updatedAt)}</span>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
 
-              {project.updatedAt && (
-                <span>
-                  Updated{' '}
-                  {formatDistanceToNow(project.updatedAt, { addSuffix: true })}
-                </span>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        <div className="flex items-center gap-x-3">
-          <ProjectSettings projectId={project.id} />
-        </div>
+        <ProjectSettings projectId={project.id} />
       </CardFooter>
     </Card>
   )
