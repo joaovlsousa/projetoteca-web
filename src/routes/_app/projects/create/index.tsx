@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { AnimatePresence, motion } from 'motion/react'
-import { Suspense, useState } from 'react'
-import { useCreateProject } from '@/hooks/http/use-create-project'
-import { ProjectForm } from '../-components/project-form'
+import { Suspense, useEffect, useState } from 'react'
+import { ProjectFormSkeleton } from '../-components/project-form-skeleton'
+import { CreateProjectForm } from './-components/create-project-form'
 import { RepositoriesForm } from './-components/repositories-form'
+import { RepositoriesFormSkeleton } from './-components/repositories-form-skeleton'
 
 export const Route = createFileRoute('/_app/projects/create/')({
   component: RouteComponent,
@@ -12,14 +13,13 @@ export const Route = createFileRoute('/_app/projects/create/')({
 const titlesByStep = [
   'Conecte seu repositório do github',
   'Detalhe seu projeto',
-  'Insira uma imagem de seu projeto',
 ]
 
 function RouteComponent() {
   const [step, setStep] = useState<number>(0)
 
   function handleDecrementStep() {
-    if (step < 1 || step > 2) {
+    if (step !== 1) {
       return
     }
 
@@ -27,14 +27,18 @@ function RouteComponent() {
   }
 
   function handleIncrementStep() {
-    if (step < 0 || step > 2) {
+    if (step !== 0) {
       return
     }
 
     setStep(step + 1)
   }
 
-  const handleCreateProject = useCreateProject()
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('currentSlug')
+    }
+  }, [])
 
   return (
     <div className="flex flex-col items-center justify-center space-y-10">
@@ -61,7 +65,7 @@ function RouteComponent() {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
             >
-              <Suspense fallback={<p>carregando...</p>}>
+              <Suspense fallback={<RepositoriesFormSkeleton />}>
                 <RepositoriesForm onSubmit={handleIncrementStep} />
               </Suspense>
             </motion.div>
@@ -75,11 +79,9 @@ function RouteComponent() {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
             >
-              <ProjectForm
-                onSubmit={async (data) => {
-                  await handleCreateProject.mutateAsync(data)
-                }}
-              />
+              <Suspense fallback={<ProjectFormSkeleton />}>
+                <CreateProjectForm onPrevious={handleDecrementStep} />
+              </Suspense>
             </motion.div>
           )}
         </AnimatePresence>

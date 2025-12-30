@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
-import { UploadProjectImageForm } from './-components/upload-project-image-form'
+import { UploadProjectImageForm } from '../../../-components/upload-project-image-form'
 
 export const Route = createFileRoute('/_app/projects/$projectId/edit/image/')({
   component: RouteComponent,
@@ -33,7 +33,7 @@ function RouteComponent() {
       </div>
 
       <div className="w-full max-w-lg">
-        <UploadProjectImageForm />
+        <UploadProjectImageForm projectId={projectId} />
       </div>
     </div>
   )

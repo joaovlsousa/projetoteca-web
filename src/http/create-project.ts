@@ -4,6 +4,7 @@ interface CreateProjectsRequest {
   name: string
   description: string
   type: 'frontend' | 'backend' | 'fullstack'
+  techsIds: string[]
   githubUrl: string
   deployUrl?: string
 }

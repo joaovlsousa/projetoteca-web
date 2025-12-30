@@ -10,12 +10,12 @@ export function useCreateProject() {
 
   return useMutation({
     mutationFn: createProject,
-    onSuccess: async ({ projectId }) => {
+    onSuccess: async () => {
       toast.success('Project created')
 
       await queryClient.invalidateQueries({ queryKey: ['projects'] })
 
-      navigate({ to: `/projects/${projectId}/edit/image` })
+      navigate({ to: '/projects' })
     },
     onError: handleHttpError,
   })

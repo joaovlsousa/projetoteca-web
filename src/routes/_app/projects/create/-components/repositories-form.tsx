@@ -27,7 +27,7 @@ export function RepositoriesForm({ onSubmit }: RepositoriesFormProps) {
     setCurrentSlug(slug)
   }
 
-  function handleSubmit(event: FormEvent) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     if (!currentSlug) {

@@ -1,6 +1,3 @@
-'use client'
-
-import { useParams } from '@tanstack/react-router'
 import { ImageUpIcon } from 'lucide-react'
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -8,24 +5,27 @@ import { Label } from '@/components/ui/label'
 import { Loader } from '@/components/ui/loader'
 import { useUploadProjectImage } from '@/hooks/http/use-upload-project-image'
 
-export function UploadProjectImageForm() {
+interface UploadProjectImageFormProps {
+  projectId: string
+}
+
+export function UploadProjectImageForm({
+  projectId,
+}: UploadProjectImageFormProps) {
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const uploadImage = useUploadProjectImage()
-  const { projectId } = useParams({
-    from: '/_app/projects/$projectId/edit/image/',
-  })
 
   useEffect(() => {
     setPreviewUrl(file ? URL.createObjectURL(file) : null)
   }, [file])
 
-  function handleFile(e: ChangeEvent<HTMLInputElement>) {
-    setFile(e.target.files ? e.target.files[0] : null)
+  function handleFile(event: ChangeEvent<HTMLInputElement>) {
+    setFile(event.target.files ? event.target.files[0] : null)
   }
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
 
     if (file && !uploadImage.isPending) {
       await uploadImage.mutateAsync({
@@ -45,12 +45,12 @@ export function UploadProjectImageForm() {
           <div className="w-full h-full flex flex-col items-center justify-center gap-y-2">
             <ImageUpIcon className="size-5 text-muted-foreground" />
             <span className="text-sm text-muted-foreground font-medium">
-              Click to choose a image
+              Toque para selecionar uma imagem
             </span>
           </div>
         )}
 
-        {previewUrl && <img src={previewUrl} alt="Project screen preview" />}
+        {previewUrl && <img src={previewUrl} alt="Imagem do projeto" />}
       </Label>
       <input
         id="file"
@@ -66,10 +66,10 @@ export function UploadProjectImageForm() {
         {uploadImage.isPending ? (
           <>
             <Loader />
-            <span>Uploading image...</span>
+            <span>Salvando imagem...</span>
           </>
         ) : (
-          'Upload image'
+          'Salvar imagem'
         )}
       </Button>
     </form>
