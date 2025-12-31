@@ -25,7 +25,7 @@ export function DeleteProjectAlert({ projectId }: DeleteProjectAlertProps) {
         size="sm"
         className="w-full justify-start text-red-500 hover:text-red-600"
       >
-        <Trash className="size-3 mr-2" />
+        <Trash className="size-3 mr-1" />
         Excluir projeto
       </Button>
     </AlertDialog>

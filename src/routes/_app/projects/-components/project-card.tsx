@@ -1,7 +1,6 @@
 import {
   AlertCircleIcon,
   GithubIcon,
-  InfoIcon,
   LinkIcon,
   ScanSearchIcon,
 } from 'lucide-react'
@@ -21,17 +20,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { formatDistanceToNow } from '@/lib/date-fns'
 import { ProjectSettings } from './project-settings'
 
 interface ProjectCardProps {
@@ -146,22 +139,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </Tooltip>
           </TooltipProvider>
         )}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" className="rounded-full">
-              <InfoIcon className="size-5" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="p-2 text-xs font-medium text-muted-foreground italic leading-relaxed">
-            <span>Criado {formatDistanceToNow(project.createdAt)}</span>
 
-            {project.updatedAt && (
-              <span>Atualizado {formatDistanceToNow(project.updatedAt)}</span>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <ProjectSettings projectId={project.id} />
+        <ProjectSettings
+          projectId={project.id}
+          createdAt={project.createdAt}
+          updatedAt={project.updatedAt}
+        />
       </CardFooter>
     </Card>
   )
