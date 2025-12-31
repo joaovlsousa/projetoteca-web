@@ -2,7 +2,7 @@ import { AxiosError } from 'axios'
 import { toast } from 'sonner'
 
 export function handleHttpError(error: Error) {
-  const messageTitle = 'Something went wrong'
+  const messageTitle = 'Ops... Algo deu errado'
   let messageDescription = ''
 
   if (error instanceof AxiosError) {

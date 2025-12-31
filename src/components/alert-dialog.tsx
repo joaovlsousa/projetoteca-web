@@ -49,7 +49,7 @@ export function AlertDialog({
         <DialogFooter>
           <Button
             asChild
-            variant="secondary"
+            variant="ghost"
             disabled={isLoading}
             onClick={() => setIsOpen(false)}
           >

@@ -10,7 +10,7 @@ export function useDeleteProject() {
   return useMutation({
     mutationFn: deleteProject,
     onSuccess: (_, { projectId }) => {
-      toast.success('Project deleted')
+      toast.success('Projeto excluído')
 
       queryClient.setQueryData<GetProjectsResponse>(['projects'], (data) => {
         if (!data) return data

@@ -4,13 +4,16 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Loader } from '@/components/ui/loader'
 import { useUploadProjectImage } from '@/hooks/http/use-upload-project-image'
+import { cn } from '@/lib/utils'
 
 interface UploadProjectImageFormProps {
   projectId: string
+  onFormSubmitted: () => void
 }
 
 export function UploadProjectImageForm({
   projectId,
+  onFormSubmitted,
 }: UploadProjectImageFormProps) {
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
@@ -32,14 +35,19 @@ export function UploadProjectImageForm({
         image: file,
         projectId,
       })
+
+      onFormSubmitted()
     }
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full space-y-4">
+    <form onSubmit={onSubmit} className="w-full space-y-2">
       <Label
         htmlFor="file"
-        className="w-full relative flex flex-col items-center justify-center aspect-video bg-transparent border rounded-md cursor-pointer overflow-hidden"
+        className={cn(
+          'w-full relative flex flex-col items-center justify-center aspect-video bg-secondary rounded-md cursor-pointer overflow-hidden',
+          file ? 'border-0' : 'border border-dashed',
+        )}
       >
         {!file && (
           <div className="w-full h-full flex flex-col items-center justify-center gap-y-2">

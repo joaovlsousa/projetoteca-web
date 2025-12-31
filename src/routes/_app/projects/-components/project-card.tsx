@@ -1,9 +1,4 @@
-import {
-  AlertCircleIcon,
-  GithubIcon,
-  LinkIcon,
-  ScanSearchIcon,
-} from 'lucide-react'
+import { GithubIcon, LinkIcon, PlusIcon, ScanSearchIcon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -26,6 +21,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { ProjectSettings } from './project-settings'
+import { UploadProjectImageModal } from './upload-project-image-modal'
 
 interface ProjectCardProps {
   project: {
@@ -75,13 +71,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </DialogContent>
           </Dialog>
         ) : (
-          <div className="w-full flex items-center justify-center gap-2 rounded-t-md bg-secondary aspect-video">
-            <AlertCircleIcon className="size-4 text-muted-foreground" />
+          <UploadProjectImageModal projectId={project.id}>
+            <div className="w-full flex items-center justify-center gap-2 rounded-t-md bg-secondary aspect-video cursor-pointer">
+              <PlusIcon className="size-4 text-muted-foreground" />
 
-            <span className="text-sm font-medium text-muted-foreground">
-              Imagem não encontrada
-            </span>
-          </div>
+              <span className="text-sm font-medium text-muted-foreground">
+                Toque para adicionar uma imagem
+              </span>
+            </div>
+          </UploadProjectImageModal>
         )}
 
         <div className="flex-1 px-2.5 space-y-1">

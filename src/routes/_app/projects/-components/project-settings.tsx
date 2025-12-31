@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { formatDistanceToNow } from '@/lib/date-fns'
 import { DeleteProjectAlert } from './delete-project-alert'
+import { UploadProjectImageModal } from './upload-project-image-modal'
 
 interface ProjectSettingsProps {
   projectId: string
@@ -47,7 +48,7 @@ export function ProjectSettings({
           </Button>
         </Link>
 
-        <Link to="/projects/$projectId/edit/image" params={{ projectId }}>
+        <UploadProjectImageModal projectId={projectId}>
           <Button
             variant="ghost"
             size="sm"
@@ -56,7 +57,7 @@ export function ProjectSettings({
             <ImageUpIcon className="size-3 mr-1" />
             Atualizar imagem
           </Button>
-        </Link>
+        </UploadProjectImageModal>
 
         <DropdownMenuSeparator />
 
