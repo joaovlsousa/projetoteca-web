@@ -12,7 +12,7 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col items-center justify-center space-y-10">
-      <h2 className="text-xl font-medium">Edit project</h2>
+      <h2 className="text-xl font-medium">Atualizar projeto</h2>
 
       <div className="w-full max-w-lg">
         <Suspense fallback={<ProjectFormSkeleton />}>

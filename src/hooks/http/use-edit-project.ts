@@ -12,7 +12,7 @@ export function useEditProject() {
   return useMutation({
     mutationFn: editProject,
     onSuccess: async (_, { projectId, ...values }) => {
-      toast.success('Project updated')
+      toast.success('Projeto atualizado')
 
       queryClient.setQueryData<GetProjectResponse>(
         ['project', projectId],
@@ -32,7 +32,7 @@ export function useEditProject() {
 
       await queryClient.invalidateQueries({ queryKey: ['projects'] })
 
-      navigate({ to: `/projects/${projectId}/edit/image` })
+      navigate({ to: '/projects' })
     },
     onError: handleHttpError,
   })

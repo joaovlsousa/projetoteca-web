@@ -16,5 +16,28 @@ export function compareObjectValues<T extends object>(
 
   const objKeys = Object.keys(objA) as (keyof T)[]
 
-  return objKeys.every((key) => objA[key] === objB[key])
+  return objKeys.every((key) => {
+    if (Array.isArray(objA[key]) && Array.isArray(objB[key])) {
+      return compareArrayOfStringValues(objA[key], objB[key])
+    }
+
+    return objA[key] === objB[key]
+  })
+}
+
+export function compareArrayOfStringValues(
+  arrA: string[],
+  arrB: string[],
+): boolean {
+  if (arrA.length !== arrB.length) {
+    return false
+  }
+
+  for (const str of arrA) {
+    if (!arrB.includes(str)) {
+      return false
+    }
+  }
+
+  return true
 }
