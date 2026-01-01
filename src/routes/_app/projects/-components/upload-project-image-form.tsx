@@ -70,7 +70,11 @@ export function UploadProjectImageForm({
         className="invisible"
       />
 
-      <Button type="submit" disabled={uploadImage.isPending} className="w-full">
+      <Button
+        type="submit"
+        disabled={!file || uploadImage.isPending}
+        className="w-full"
+      >
         {uploadImage.isPending ? (
           <>
             <Loader />

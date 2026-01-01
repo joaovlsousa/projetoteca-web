@@ -1,4 +1,4 @@
-import { GithubIcon, LinkIcon, PlusIcon, ScanSearchIcon } from 'lucide-react'
+import { GithubIcon, LinkIcon, ScanSearchIcon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -72,9 +72,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Dialog>
         ) : (
           <UploadProjectImageModal projectId={project.id}>
-            <div className="w-full flex items-center justify-center gap-2 rounded-t-md bg-secondary aspect-video cursor-pointer">
-              <PlusIcon className="size-4 text-muted-foreground" />
-
+            <div className="w-full flex items-center justify-center rounded-t-md bg-secondary aspect-video cursor-pointer">
               <span className="text-sm font-medium text-muted-foreground">
                 Toque para adicionar uma imagem
               </span>
