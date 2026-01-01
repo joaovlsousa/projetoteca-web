@@ -46,7 +46,7 @@ export function RepositoriesForm({ onSubmit }: RepositoriesFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
-      <div className="max-h-96 overflow-y-auto space-y-2">
+      <div className="max-h-96 px-0.5 overflow-y-auto space-y-2">
         {repositories.map((repository) => (
           <Label
             key={repository.slug}
@@ -82,7 +82,7 @@ export function RepositoriesForm({ onSubmit }: RepositoriesFormProps) {
       >
         {isPending ? (
           <>
-            <Loader className="mr-2" />
+            <Loader />
             <span>Conectando...</span>
           </>
         ) : (
