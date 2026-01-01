@@ -1,24 +1,17 @@
-import { Activity } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 
 function LogoSvg() {
   return (
     <svg
-      width={32}
-      height={32}
-      viewBox="0 0 32 32"
+      width={31}
+      height={20}
+      viewBox="0 0 51 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M14.638 24H8a2 2 0 01-2-2V9a2 2 0 012-2h3.9a2 2 0 011.69.9l.81 1.2a2 2 0 001.67.9H24a2 2 0 012 2v3.417"
-        stroke="#fff"
-        strokeWidth={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M21.81 17.108a.201.201 0 01.079-.079.225.225 0 01.223 0c.034.02.06.047.078.08l.924 1.72a.8.8 0 00.262.285c.111.074.24.122.376.14l2.066.278c.04.006.076.02.107.044.03.024.052.054.065.089a.18.18 0 01.004.107.192.192 0 01-.058.093l-1.494 1.337a.775.775 0 00-.215.317.72.72 0 00-.03.373l.353 1.89a.18.18 0 01-.012.106.198.198 0 01-.072.085.224.224 0 01-.224.014l-1.847-.892a.91.91 0 00-.79 0l-1.846.892a.227.227 0 01-.224-.014.197.197 0 01-.072-.085.18.18 0 01-.012-.107l.352-1.889a.721.721 0 00-.029-.373.774.774 0 00-.215-.317l-1.494-1.337a.192.192 0 01-.059-.093.18.18 0 01.004-.107.194.194 0 01.066-.09.221.221 0 01.106-.043l2.066-.277a.893.893 0 00.377-.141.802.802 0 00.262-.286l.923-1.72z"
-        fill="#EDBD00"
+        d="M12.704 0l10.334 8.829c.613.524.967 1.293.967 2.103v6.654L13.671 8.757a2.766 2.766 0 01-.967-2.103V0zM12.704 40l10.334-8.829a2.766 2.766 0 00.967-2.103v-6.654l-10.334 8.829a2.766 2.766 0 00-.967 2.103V40zM.375 9.31l10.194 8.66c.494.42 1.12.65 1.766.65h8.221L10.387 9.964a2.728 2.728 0 00-1.769-.653H.375zM.375 30.69l10.13-8.655a2.729 2.729 0 011.773-.656h8.303l-10.194 8.66c-.494.42-1.12.65-1.767.65H.375zM38.046 0L27.712 8.829a2.766 2.766 0 00-.967 2.103v6.654l10.334-8.829a2.766 2.766 0 00.967-2.103V0zM38.046 40l-10.334-8.829a2.766 2.766 0 01-.967-2.103v-6.654l10.334 8.829c.614.524.967 1.293.967 2.103V40zM50.375 9.31l-10.194 8.66c-.494.42-1.12.65-1.766.65h-8.221l10.168-8.657a2.728 2.728 0 011.77-.653h8.243zM50.375 30.69l-10.13-8.655a2.729 2.729 0 00-1.773-.656h-8.303l10.194 8.66c.494.42 1.12.65 1.767.65h8.245z"
+        fill="#fff"
       />
     </svg>
   )
@@ -30,12 +23,30 @@ interface LogoProps {
 
 export function Logo({ size = 'default' }: LogoProps) {
   return (
-    <div className="flex items-center gap-x-2">
-      <LogoSvg />
+    <AnimatePresence mode="wait">
+      {size === 'sm' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <LogoSvg />
+        </motion.div>
+      )}
+      {size === 'default' && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex items-center gap-x-1"
+        >
+          <LogoSvg />
 
-      <Activity mode={size === 'sm' ? 'hidden' : 'visible'}>
-        <span className="text-xl font-bold tracking-wider">Projetoteca</span>
-      </Activity>
-    </div>
+          <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

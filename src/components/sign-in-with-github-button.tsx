@@ -13,7 +13,7 @@ export function SignInWithGithubButton() {
 
   return (
     <a href={signInUrl.toString()}>
-      <Button size="lg" variant="default">
+      <Button size="lg">
         <GithubIcon className="size-4" />
         Conectar-se com o github
       </Button>

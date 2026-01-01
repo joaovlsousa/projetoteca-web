@@ -91,6 +91,8 @@
   --shadow-xl:
     0px 1px 0px 0px hsl(0 0% 0% / 0), 0px 8px 10px -1px hsl(0 0% 0% / 0);
   --shadow-2xl: 0px 1px 0px 0px hsl(0 0% 0% / 0);
+
+  --font-logo: "IBM Plex Mono";
 }
 
 @theme inline {
@@ -127,7 +129,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --default-font-family: "JetBrains Mono", monospace;
+  --default-font-family: "JetBrains Mono";
+  --font-logo: var(--font-logo);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
