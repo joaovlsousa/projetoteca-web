@@ -6,6 +6,11 @@ export interface GetProjectsResponse {
     name: string
     description: string
     type: 'frontend' | 'backend' | 'fullstack'
+    techs: {
+      id: string
+      name: string
+      imageUrl: string
+    }[]
     imageUrl: string | null
     githubUrl: string
     deployUrl: string | null

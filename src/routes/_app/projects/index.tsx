@@ -9,10 +9,8 @@ export const Route = createFileRoute('/_app/projects/')({
 
 function RouteComponent() {
   return (
-    <div className="h-full">
-      <Suspense fallback={<ProjectsGridSkeleton />}>
-        <ProjectsGrid />
-      </Suspense>
-    </div>
+    <Suspense fallback={<ProjectsGridSkeleton />}>
+      <ProjectsGrid />
+    </Suspense>
   )
 }

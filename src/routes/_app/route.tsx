@@ -1,8 +1,7 @@
 import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
-import { AppNavbar } from '@/components/app-navbar'
-import { AppSidebar } from '@/components/app-sidebar'
-import { SidebarProvider } from '@/components/ui/sidebar'
+import { Navbar } from '@/components/navbar'
+import { Sidebar } from '@/components/sidebar'
 import { useAuth } from '@/hooks/use-auth'
 
 export const Route = createFileRoute('/_app')({
@@ -20,16 +19,16 @@ function RouteComponent() {
   }, [token, navigate])
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
+    <>
+      <Sidebar />
 
-      <main className="relative w-full min-h-screen">
-        <AppNavbar />
+      <main className="relative ml-14 w-full max-w-[calc(100%-3.5rem)]">
+        <Navbar />
 
-        <div className="min-h-[calc(100vh-3.5rem)] mt-14 p-6">
+        <div className="mt-14 w-full p-6">
           <Outlet />
         </div>
       </main>
-    </SidebarProvider>
+    </>
   )
 }

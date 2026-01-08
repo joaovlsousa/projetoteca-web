@@ -1,5 +1,8 @@
 import { useLocation } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
+import { HomeIcon } from 'lucide-react'
+import { Suspense, useEffect, useState } from 'react'
+import { Profile } from './profile'
+import { ProfileSkeleton } from './profile-skeleton'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,9 +10,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from './ui/breadcrumb'
-import { SidebarTrigger } from './ui/sidebar'
 
-export function AppNavbar() {
+export function Navbar() {
   const [breadcrump, setBreadcrump] = useState<string>('')
   const { pathname } = useLocation()
 
@@ -33,11 +35,10 @@ export function AppNavbar() {
   }, [pathname])
 
   return (
-    <div className="fixed z-10 w-full h-14 px-4 flex items-center gap-x-4 bg-sidebar border-b">
-      <SidebarTrigger />
-
+    <div className="fixed top-0 z-10 w-full max-w-[calc(100%-3.5rem)] h-14 px-4 flex items-center justify-between bg-sidebar border-b">
       <Breadcrumb>
         <BreadcrumbList>
+          <HomeIcon className="size-4" />
           <BreadcrumbSeparator />
 
           <BreadcrumbItem className="capitalize">
@@ -45,6 +46,10 @@ export function AppNavbar() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      <Suspense fallback={<ProfileSkeleton />}>
+        <Profile />
+      </Suspense>
     </div>
   )
 }
