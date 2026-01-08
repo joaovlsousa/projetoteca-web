@@ -9,7 +9,7 @@ interface GetProfileResponse {
 }
 
 export async function getProfile(): Promise<GetProfileResponse> {
-  const response = await api.get<GetProfileResponse>('/profile')
+  const response = await api.get<GetProfileResponse>('/users/profile')
 
   return response.data
 }
