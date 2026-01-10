@@ -9,7 +9,7 @@ export function useDeleteProject() {
 
   return useMutation({
     mutationFn: deleteProject,
-    onSuccess: (_, { projectId }) => {
+    onSuccess: async (_, { projectId }) => {
       toast.success('Projeto excluído')
 
       queryClient.setQueryData<GetProjectsResponse>(['projects'], (data) => {
@@ -22,6 +22,10 @@ export function useDeleteProject() {
         return {
           projects: projectsCache,
         }
+      })
+
+      await queryClient.invalidateQueries({
+        queryKey: ['projects', 'metadata'],
       })
     },
     onError: handleHttpError,
