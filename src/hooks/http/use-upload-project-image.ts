@@ -11,7 +11,10 @@ export function useUploadProjectImage() {
     onSuccess: async () => {
       toast.success('Imagem do projeto atualizada')
 
-      await queryClient.invalidateQueries({ queryKey: ['projects'] })
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ['projects'], exact: true }),
+        queryClient.invalidateQueries({ queryKey: ['storage', 'metadata'] }),
+      ])
     },
     onError: handleHttpError,
   })

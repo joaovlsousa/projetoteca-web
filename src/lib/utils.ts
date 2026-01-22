@@ -41,3 +41,11 @@ export function compareArrayOfStringValues(
 
   return true
 }
+
+export function formatBytesToMegabytes(bytes: number): number {
+  const ONE_MEGABYTE = 1024 * 1024
+
+  const megabytes = bytes / ONE_MEGABYTE
+
+  return Number(megabytes.toFixed(3))
+}

@@ -11,26 +11,31 @@ export function useEditProject() {
 
   return useMutation({
     mutationFn: editProject,
-    onSuccess: async (_, { projectId, ...values }) => {
+    onSuccess: async (_, { projectId, ...updatedValues }) => {
       toast.success('Projeto atualizado')
 
       queryClient.setQueryData<GetProjectResponse>(
         ['project', projectId],
-        (data) => {
-          return data
-            ? {
-                project: {
-                  ...data.project,
-                  ...values,
-                  deployUrl: values.deployUrl ?? null,
-                  updatedAt: new Date().toISOString(),
-                },
-              }
-            : data
+        (oldQueryData) => {
+          if (!oldQueryData) return oldQueryData
+
+          const updatedQueryData: GetProjectResponse = {
+            project: {
+              ...oldQueryData.project,
+              ...updatedValues,
+              deployUrl: updatedValues.deployUrl ?? null,
+              updatedAt: new Date().toISOString(),
+            },
+          }
+
+          return updatedQueryData
         },
       )
 
-      await queryClient.invalidateQueries({ queryKey: ['projects'] })
+      await queryClient.invalidateQueries({
+        queryKey: ['projects'],
+        exact: true,
+      })
 
       navigate({ to: '/projects' })
     },

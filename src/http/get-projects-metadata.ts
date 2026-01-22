@@ -3,9 +3,7 @@ import { api } from '@/lib/axios'
 export interface GetProjectsMetadataResponse {
   metadata: {
     countProjects: number
-    countStorageInBytes: number
-    totalProjects: number
-    totalStorageInBytes: number
+    totalOfProjectsByUser: number
   }
 }
 

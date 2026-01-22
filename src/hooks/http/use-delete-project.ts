@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { deleteProject } from '@/http/delete-project'
 import type { GetProjectsResponse } from '@/http/get-projects'
+import type { GetProjectsMetadataResponse } from '@/http/get-projects-metadata'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useDeleteProject() {
@@ -12,20 +13,40 @@ export function useDeleteProject() {
     onSuccess: async (_, { projectId }) => {
       toast.success('Projeto excluído')
 
-      queryClient.setQueryData<GetProjectsResponse>(['projects'], (data) => {
-        if (!data) return data
+      queryClient.setQueryData<GetProjectsResponse>(
+        ['projects'],
+        (oldQueryData) => {
+          if (!oldQueryData) return oldQueryData
 
-        const projectsCache = data.projects.filter(
-          (project) => project.id !== projectId,
-        )
+          const updatedQueryData = oldQueryData.projects.filter(
+            (project) => project.id !== projectId,
+          )
 
-        return {
-          projects: projectsCache,
-        }
-      })
+          return {
+            projects: updatedQueryData,
+          }
+        },
+      )
+
+      queryClient.setQueryData<GetProjectsMetadataResponse>(
+        ['projects', 'metadata'],
+        (oldQueryData) => {
+          if (!oldQueryData) return oldQueryData
+
+          const updatedQueryData: GetProjectsMetadataResponse = {
+            metadata: {
+              totalOfProjectsByUser:
+                oldQueryData.metadata.totalOfProjectsByUser,
+              countProjects: oldQueryData.metadata.countProjects - 1,
+            },
+          }
+
+          return updatedQueryData
+        },
+      )
 
       await queryClient.invalidateQueries({
-        queryKey: ['projects', 'metadata'],
+        queryKey: ['storage', 'metadata'],
       })
     },
     onError: handleHttpError,
