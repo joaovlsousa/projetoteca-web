@@ -11,7 +11,9 @@ export function ProjectsMetadata() {
 
   return (
     <div className="flex flex-col space-y-1.5">
-      <span className="text-sm">{projetcsPercentage.toFixed(1)}%</span>
+      <span className="text-sm">
+        {projetcsPercentage.toFixed(1).replace('.0', '')}%
+      </span>
 
       <Progress value={projetcsPercentage} />
 

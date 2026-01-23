@@ -20,7 +20,9 @@ export function StorageMetadata() {
 
   return (
     <div className="flex flex-col space-y-1.5">
-      <span className="text-sm">{storagePercentage.toFixed(1)}%</span>
+      <span className="text-sm">
+        {storagePercentage.toFixed(1).replace('.0', '')}%
+      </span>
 
       <Progress value={storagePercentage} />
 
