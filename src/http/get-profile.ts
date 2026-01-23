@@ -4,7 +4,7 @@ interface GetProfileResponse {
   user: {
     name: string
     username: string
-    avatarUrl: string
+    isPublicProfile: boolean
   }
 }
 

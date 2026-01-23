@@ -1,8 +1,6 @@
 import { useLocation } from '@tanstack/react-router'
 import { HomeIcon } from 'lucide-react'
-import { Suspense, useEffect, useState } from 'react'
-import { Profile } from './profile'
-import { ProfileSkeleton } from './profile-skeleton'
+import { useEffect, useState } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -35,7 +33,7 @@ export function Navbar() {
   }, [pathname])
 
   return (
-    <div className="fixed top-0 z-10 w-full max-w-[calc(100%-3.5rem)] h-14 px-4 flex items-center justify-between bg-sidebar border-b">
+    <div className="fixed top-0 z-10 w-full max-w-[calc(100%-3.5rem)] h-14 px-4 flex items-center bg-sidebar border-b">
       <Breadcrumb>
         <BreadcrumbList>
           <HomeIcon className="size-4" />
@@ -46,10 +44,6 @@ export function Navbar() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-
-      <Suspense fallback={<ProfileSkeleton />}>
-        <Profile />
-      </Suspense>
     </div>
   )
 }
