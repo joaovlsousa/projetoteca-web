@@ -29,6 +29,10 @@ export function Navbar() {
       case 'edit':
         setBreadcrump('Alterar dados do projeto')
         break
+
+      case 'profile':
+        setBreadcrump('Seu perfil')
+        break
     }
   }, [pathname])
 
