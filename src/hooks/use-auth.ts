@@ -1,22 +1,20 @@
-import { useCookies } from 'react-cookie'
+import Cookies from 'js-cookie'
 
 export function useAuth() {
-  const [cookies, setCookie, removeCookie] = useCookies(['token'])
-
   function saveToken(token: string) {
-    setCookie('token', token, {
+    Cookies.set('token', token, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7,
+      expires: 7,
     })
   }
 
   function clearToken() {
-    removeCookie('token', {
+    Cookies.remove('token', {
       path: '/',
     })
   }
 
-  const token = cookies.token ? String(cookies.token) : null
+  const token = Cookies.get('token') ? Cookies.get('token') : null
 
   return {
     token,

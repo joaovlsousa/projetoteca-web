@@ -1,9 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import { FolderOpenIcon, User2Icon } from 'lucide-react'
-import { Suspense } from 'react'
 import { Logo } from './logo'
-import { ProfileAvatar } from './profile-avatar'
-import { ProfileAvatarSkeleton } from './profile-avatar-skeleton'
 import { SidebarNavItem } from './sidebar-nav-item'
 import { SignOutButton } from './sign-out-button'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
@@ -53,10 +50,6 @@ export function Sidebar() {
       </nav>
 
       <div className="h-32 flex flex-col items-center justify-end space-y-5 pb-3">
-        <Suspense fallback={<ProfileAvatarSkeleton />}>
-          <ProfileAvatar />
-        </Suspense>
-
         <SignOutButton />
       </div>
     </aside>
