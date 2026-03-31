@@ -1,4 +1,4 @@
-import { GithubIcon } from 'lucide-react'
+import { GithubLogoIcon } from '@phosphor-icons/react'
 import { env } from '@/config/env'
 import { Button } from './ui/button'
 
@@ -13,8 +13,8 @@ export function SignInWithGithubButton() {
 
   return (
     <a href={signInUrl.toString()}>
-      <Button size="lg">
-        <GithubIcon className="size-4" />
+      <Button size="lg" className="px-10">
+        <GithubLogoIcon className="size-4" />
         Conectar-se com o github
       </Button>
     </a>

@@ -7,7 +7,7 @@ const RootLayout = () => (
   <QueryClientProvider client={queryClient}>
     <Outlet />
 
-    <Toaster position="top-center" richColors />
+    <Toaster position="top-center" theme="dark" richColors />
   </QueryClientProvider>
 )
 

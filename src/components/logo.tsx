@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 
 function LogoSvg() {
   return (
@@ -17,36 +17,18 @@ function LogoSvg() {
   )
 }
 
-interface LogoProps {
-  size?: 'sm' | 'default'
-}
-
-export function Logo({ size = 'default' }: LogoProps) {
+export function Logo() {
   return (
-    <AnimatePresence mode="wait">
-      {size === 'sm' && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <LogoSvg />
-        </motion.div>
-      )}
-      {size === 'default' && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="flex items-center gap-x-1"
-        >
-          <LogoSvg />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex items-center gap-x-1"
+    >
+      <LogoSvg />
 
-          <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
+    </motion.div>
   )
 }
