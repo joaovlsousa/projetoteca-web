@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
+@import "@fontsource/ibm-plex-mono/400-italic.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -134,7 +135,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --default-font-family: "Inter";
+  --font-sans: "Inter Variable", sans-serif;
+  --font-heading: var(--font-sans);
   --font-logo: var(--font-logo);
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -150,8 +152,7 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
-  --font-heading: var(--font-sans);
-  --font-sans: "Inter Variable", sans-serif;
+
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);

@@ -1,5 +1,5 @@
+import { SignOutIcon } from '@phosphor-icons/react'
 import { useNavigate } from '@tanstack/react-router'
-import { LogOutIcon } from 'lucide-react'
 import { useAuth } from '@/hooks/use-auth'
 import { Button } from './ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
@@ -17,7 +17,7 @@ export function SignOutButton() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="ghost" size="icon-lg" onClick={handleSignOut}>
-          <LogOutIcon className="text-red-500" />
+          <SignOutIcon className="text-red-500" />
         </Button>
       </TooltipTrigger>
       <TooltipContent side="right">Desconectar-se do app</TooltipContent>

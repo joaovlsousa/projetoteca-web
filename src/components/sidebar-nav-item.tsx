@@ -1,11 +1,11 @@
+import type { Icon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
-import type { LucideIcon } from 'lucide-react'
 import { Button } from './ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 interface SidebarNavItemProps {
   isActive: boolean
-  icon: LucideIcon
+  icon: Icon
   href: string
   label: string
 }

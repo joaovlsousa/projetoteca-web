@@ -1,5 +1,5 @@
+import { HouseLineIcon } from '@phosphor-icons/react'
 import { useLocation } from '@tanstack/react-router'
-import { HomeIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import {
   Breadcrumb,
@@ -40,7 +40,7 @@ export function Navbar() {
     <div className="fixed top-0 z-10 w-full max-w-[calc(100%-3.5rem)] h-14 px-4 flex items-center bg-sidebar border-b">
       <Breadcrumb>
         <BreadcrumbList>
-          <HomeIcon className="size-4" />
+          <HouseLineIcon className="size-4" />
           <BreadcrumbSeparator />
 
           <BreadcrumbItem className="capitalize">

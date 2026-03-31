@@ -1,4 +1,4 @@
-import { GithubIcon, LinkIcon, ScanSearchIcon } from 'lucide-react'
+import { GithubLogoIcon, LinkIcon, ScanIcon } from '@phosphor-icons/react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -57,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 />
 
                 <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 transition-all duration-300">
-                  <ScanSearchIcon />
+                  <ScanIcon />
                 </div>
               </div>
             </DialogTrigger>
@@ -108,7 +108,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 className="rounded-full"
               >
                 <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                  <GithubIcon className="size-5" />
+                  <GithubLogoIcon className="size-5" />
                 </a>
               </Button>
             </TooltipTrigger>

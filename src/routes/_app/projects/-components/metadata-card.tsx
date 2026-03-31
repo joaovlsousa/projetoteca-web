@@ -1,11 +1,11 @@
-import type { LucideIcon } from 'lucide-react'
+import type { Icon } from '@phosphor-icons/react'
 import { type ReactNode, Suspense } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { MetadataCardSkeleton } from './metadata-card-skeleton'
 
 interface MetadataCardProps {
   title: string
-  icon: LucideIcon
+  icon: Icon
   children: ReactNode
 }
 

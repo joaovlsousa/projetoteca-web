@@ -1,4 +1,4 @@
-import { ImageUpIcon } from 'lucide-react'
+import { FileArrowUpIcon } from '@phosphor-icons/react'
 import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -51,7 +51,7 @@ export function UploadProjectImageForm({
       >
         {!file && (
           <div className="w-full h-full flex flex-col items-center justify-center gap-y-2">
-            <ImageUpIcon className="size-5 text-muted-foreground" />
+            <FileArrowUpIcon className="size-5 text-muted-foreground" />
             <span className="text-sm text-muted-foreground font-medium">
               Toque para selecionar uma imagem
             </span>

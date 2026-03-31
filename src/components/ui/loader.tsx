@@ -1,4 +1,4 @@
-import { LoaderIcon } from 'lucide-react'
+import { SpinnerIcon } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 
 interface LoaderProps {
@@ -6,5 +6,5 @@ interface LoaderProps {
 }
 
 export function Loader({ className }: LoaderProps) {
-  return <LoaderIcon className={cn('size-4 animate-spin', className)} />
+  return <SpinnerIcon className={cn('size-4 animate-spin', className)} />
 }

@@ -1,4 +1,4 @@
-import { CheckIcon, FolderGit2Icon } from 'lucide-react'
+import { CheckIcon, FolderIcon } from '@phosphor-icons/react'
 import { type FormEvent, useState, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -56,7 +56,7 @@ export function RepositoriesForm({ onSubmit }: RepositoriesFormProps) {
               currentSlug === repository.slug && 'bg-primary',
             )}
           >
-            <FolderGit2Icon className="size-4" />
+            <FolderIcon className="size-4" />
             {repository.name}
             {currentSlug === repository.slug && (
               <CheckIcon className="size-4" />

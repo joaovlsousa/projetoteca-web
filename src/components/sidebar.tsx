@@ -1,5 +1,5 @@
+import { FolderOpenIcon, UserGearIcon } from '@phosphor-icons/react'
 import { Link, useLocation } from '@tanstack/react-router'
-import { FolderOpenIcon, User2Icon } from 'lucide-react'
 import { Logo } from './logo'
 import { SidebarNavItem } from './sidebar-nav-item'
 import { SignOutButton } from './sign-out-button'
@@ -14,7 +14,7 @@ const links = [
   {
     name: 'Perfil',
     href: '/profile',
-    icon: User2Icon,
+    icon: UserGearIcon,
   },
 ]
 
@@ -27,7 +27,7 @@ export function Sidebar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link to="/">
-              <Logo size="sm" />
+              <Logo />
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right">Ir para a tela inicial</TooltipContent>

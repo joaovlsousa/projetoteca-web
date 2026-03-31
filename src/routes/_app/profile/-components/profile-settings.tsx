@@ -1,4 +1,4 @@
-import { CopyIcon, FileUserIcon, GlobeLockIcon } from 'lucide-react'
+import { CopyIcon, EyeSlashIcon, InfoIcon } from '@phosphor-icons/react'
 import { useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -45,7 +45,7 @@ export function ProfileSettings() {
     <div className="flex flex-col items-center space-y-10">
       <section id="profileInfo" className="w-full max-w-lg space-y-4">
         <div className="flex items-center gap-x-2">
-          <FileUserIcon className="size-5" />
+          <InfoIcon className="size-5" />
           <h2 className="text-xl font-medium">Informações pessoais</h2>
         </div>
 
@@ -66,7 +66,7 @@ export function ProfileSettings() {
 
       <section id="privacySettings" className="w-full max-w-lg space-y-4">
         <div className="flex items-center gap-x-2">
-          <GlobeLockIcon className="size-5" />
+          <EyeSlashIcon className="size-5" />
           <h2 className="text-xl font-medium">Configurações de privacidade</h2>
         </div>
 

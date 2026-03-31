@@ -1,4 +1,4 @@
-import { Trash } from 'lucide-react'
+import { TrashIcon } from '@phosphor-icons/react'
 import { AlertDialog } from '@/components/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { useDeleteProject } from '@/hooks/http/use-delete-project'
@@ -25,7 +25,7 @@ export function DeleteProjectAlert({ projectId }: DeleteProjectAlertProps) {
         size="sm"
         className="w-full justify-start text-red-500 hover:text-red-600"
       >
-        <Trash className="size-3 mr-1" />
+        <TrashIcon className="size-3 mr-1" />
         Excluir projeto
       </Button>
     </AlertDialog>

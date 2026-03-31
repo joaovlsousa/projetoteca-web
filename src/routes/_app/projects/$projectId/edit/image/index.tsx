@@ -1,5 +1,5 @@
+import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
 import { UploadProjectImageForm } from '../../../-components/upload-project-image-form'
 
 export const Route = createFileRoute('/_app/projects/$projectId/edit/image/')({
@@ -33,7 +33,10 @@ function RouteComponent() {
       </div>
 
       <div className="w-full max-w-lg">
-        <UploadProjectImageForm projectId={projectId} />
+        <UploadProjectImageForm
+          projectId={projectId}
+          onFormSubmitted={() => {}}
+        />
       </div>
     </div>
   )

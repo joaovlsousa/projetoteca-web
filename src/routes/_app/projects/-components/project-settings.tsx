@@ -1,11 +1,11 @@
-import { Link } from '@tanstack/react-router'
 import {
   CalendarIcon,
-  ImageUpIcon,
+  ClockClockwiseIcon,
+  FileArrowUpIcon,
+  GearIcon,
   PenIcon,
-  RefreshCwIcon,
-  SettingsIcon,
-} from 'lucide-react'
+} from '@phosphor-icons/react'
+import { Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -33,7 +33,7 @@ export function ProjectSettings({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full group">
-          <SettingsIcon className="size-5 group-hover:rotate-12 transition duration-100" />
+          <GearIcon className="size-5 group-hover:rotate-12 transition duration-100" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="top" className="max-w-56 p-2 space-y-1.5">
@@ -54,7 +54,7 @@ export function ProjectSettings({
             size="sm"
             className="w-full justify-start font-normal"
           >
-            <ImageUpIcon className="size-3 mr-1" />
+            <FileArrowUpIcon className="size-3 mr-1" />
             Atualizar imagem
           </Button>
         </UploadProjectImageModal>
@@ -71,7 +71,7 @@ export function ProjectSettings({
 
           {updatedAt && (
             <div className="flex itens-center gap-x-2 text-xs text-muted-foreground italic">
-              <RefreshCwIcon className="size-3.5" />
+              <ClockClockwiseIcon className="size-3.5" />
               <span>Atualizado {formatDistanceToNow(updatedAt)}</span>
             </div>
           )}
