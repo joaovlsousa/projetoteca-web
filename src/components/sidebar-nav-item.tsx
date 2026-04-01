@@ -1,7 +1,7 @@
 import type { Icon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
+import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 interface SidebarNavItemProps {
   isActive: boolean
@@ -17,15 +17,18 @@ export function SidebarNavItem({
   icon: Icon,
 }: SidebarNavItemProps) {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Link to={href}>
-          <Button variant={isActive ? 'secondary' : 'ghost'} size="icon-lg">
-            <Icon />
-          </Button>
-        </Link>
-      </TooltipTrigger>
-      <TooltipContent side="right">{label}</TooltipContent>
-    </Tooltip>
+    <Button
+      asChild
+      variant={isActive ? 'secondary' : 'ghost'}
+      className={cn(
+        'w-full justify-start text-base font-medium',
+        isActive ? 'text-foreground' : 'text-muted-foreground',
+      )}
+    >
+      <Link to={href}>
+        <Icon className="size-5 mr-1" weight={isActive ? 'fill' : 'regular'} />
+        <span>{label}</span>
+      </Link>
+    </Button>
   )
 }

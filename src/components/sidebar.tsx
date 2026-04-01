@@ -1,8 +1,10 @@
 import { FolderOpenIcon, UserGearIcon } from '@phosphor-icons/react'
 import { Link, useLocation } from '@tanstack/react-router'
 import { Logo } from './logo'
+import { ProfileInfo } from './profile-info'
 import { SidebarNavItem } from './sidebar-nav-item'
 import { SignOutButton } from './sign-out-button'
+import { Separator } from './ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 const links = [
@@ -22,36 +24,44 @@ export function Sidebar() {
   const { pathname } = useLocation()
 
   return (
-    <aside className="fixed inset-0 w-14 flex flex-col bg-sidebar border-r">
-      <div className="h-14 flex items-center justify-center border-b">
+    <aside className="fixed inset-0 w-64 p-4 flex flex-col items-stretch space-y-10 bg-sidebar border-r">
+      <header>
         <Tooltip>
-          <TooltipTrigger asChild>
+          <TooltipTrigger>
             <Link to="/">
               <Logo />
             </Link>
           </TooltipTrigger>
-          <TooltipContent side="right">Ir para a tela inicial</TooltipContent>
+          <TooltipContent side="right" sideOffset={10}>
+            Ir para a tela inicial
+          </TooltipContent>
         </Tooltip>
-      </div>
+      </header>
 
-      <nav className="flex flex-1 justify-center py-6">
-        <ul className="space-y-3">
-          {links.map((link) => (
-            <li key={link.href}>
-              <SidebarNavItem
-                href={link.href}
-                label={link.name}
-                icon={link.icon}
-                isActive={link.href === pathname}
-              />
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <main className="flex-1 space-y-2">
+        <h4 className="text-sm font-medium text-muted-foreground">Menu</h4>
 
-      <div className="h-32 flex flex-col items-center justify-end space-y-5 pb-3">
+        <nav className="spce-y-3">
+          <ul className="space-y-3">
+            {links.map((link) => (
+              <li key={link.href}>
+                <SidebarNavItem
+                  href={link.href}
+                  label={link.name}
+                  icon={link.icon}
+                  isActive={link.href === pathname}
+                />
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </main>
+
+      <footer className="w-full flex items-center gap-x-2">
+        <ProfileInfo />
+        <Separator orientation="vertical" />
         <SignOutButton />
-      </div>
+      </footer>
     </aside>
   )
 }
