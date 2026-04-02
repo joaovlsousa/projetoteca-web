@@ -1,5 +1,15 @@
-import { FileArrowUpIcon } from '@phosphor-icons/react'
-import { type ChangeEvent, type FormEvent, useEffect, useState } from 'react'
+import {
+  FileArrowUpIcon,
+  FloppyDiskIcon,
+  TrashIcon,
+} from '@phosphor-icons/react'
+import {
+  type ChangeEvent,
+  type FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Loader } from '@/components/ui/loader'
@@ -17,14 +27,31 @@ export function UploadProjectImageForm({
 }: UploadProjectImageFormProps) {
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const inputFileRef = useRef<HTMLInputElement>(null)
   const uploadImage = useUploadProjectImage()
 
   useEffect(() => {
-    setPreviewUrl(file ? URL.createObjectURL(file) : null)
+    if (!file) {
+      setPreviewUrl(null)
+      return
+    }
+
+    const previewUrl = URL.createObjectURL(file)
+    setPreviewUrl(previewUrl)
+
+    return () => URL.revokeObjectURL(previewUrl)
   }, [file])
 
-  function handleFile(event: ChangeEvent<HTMLInputElement>) {
+  function handleAddFile(event: ChangeEvent<HTMLInputElement>) {
     setFile(event.target.files ? event.target.files[0] : null)
+  }
+
+  function handleRemoveFile() {
+    if (inputFileRef.current) {
+      inputFileRef.current.value = ''
+    }
+
+    setFile(null)
   }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -41,7 +68,7 @@ export function UploadProjectImageForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full space-y-2">
+    <form onSubmit={onSubmit} className="w-full space-y-2 relative">
       <Label
         htmlFor="file"
         className={cn(
@@ -64,11 +91,24 @@ export function UploadProjectImageForm({
         id="file"
         name="file"
         type="file"
-        accept="image/png"
-        onChange={handleFile}
+        ref={inputFileRef}
+        accept="image/png, image/webp"
+        onChange={handleAddFile}
         disabled={uploadImage.isPending}
         className="invisible"
       />
+
+      {previewUrl && (
+        <Button
+          type="button"
+          size="icon-lg"
+          variant="destructive"
+          onClick={handleRemoveFile}
+          className="absolute -top-4 -right-4 bg-destructive text-foreground hover:bg-destructive/80 rounded-full"
+        >
+          <TrashIcon />
+        </Button>
+      )}
 
       <Button
         type="submit"
@@ -81,7 +121,10 @@ export function UploadProjectImageForm({
             <span>Salvando imagem...</span>
           </>
         ) : (
-          'Salvar imagem'
+          <>
+            <FloppyDiskIcon className="size-4" />
+            <span>Salvar imagem</span>
+          </>
         )}
       </Button>
     </form>

@@ -28,7 +28,7 @@ export function UploadProjectImageModal({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-xl space-y-5 pb-0">
         <DialogHeader>
-          <DialogTitle className="text-center">
+          <DialogTitle className="text-center text-lg">
             Atualizar imagem do projeto
           </DialogTitle>
         </DialogHeader>

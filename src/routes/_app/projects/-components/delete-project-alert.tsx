@@ -21,11 +21,11 @@ export function DeleteProjectAlert({ projectId }: DeleteProjectAlertProps) {
       onConfirm={handleDeleteProject}
     >
       <Button
-        variant="ghost"
+        variant="destructive"
         size="sm"
-        className="w-full justify-start text-red-500 hover:text-red-600"
+        className="w-full justify-start bg-transparent"
       >
-        <TrashIcon className="size-3 mr-1" />
+        <TrashIcon className="size-4" />
         Excluir projeto
       </Button>
     </AlertDialog>

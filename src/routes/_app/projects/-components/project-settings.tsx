@@ -36,14 +36,14 @@ export function ProjectSettings({
           <GearIcon className="size-5 group-hover:rotate-12 transition duration-100" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="top" className="max-w-56 p-2 space-y-1.5">
+      <DropdownMenuContent side="top" className="w-56 p-2 space-y-1.5">
         <Link to="/projects/$projectId/edit" params={{ projectId }}>
           <Button
             variant="ghost"
             size="sm"
             className="w-full justify-start font-normal"
           >
-            <PenIcon className="size-3 mr-1" />
+            <PenIcon className="size-4" />
             Atualizar projeto
           </Button>
         </Link>
@@ -54,7 +54,7 @@ export function ProjectSettings({
             size="sm"
             className="w-full justify-start font-normal"
           >
-            <FileArrowUpIcon className="size-3 mr-1" />
+            <FileArrowUpIcon className="size-4" />
             Atualizar imagem
           </Button>
         </UploadProjectImageModal>

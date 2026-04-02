@@ -57,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 />
 
                 <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 transition-all duration-300">
-                  <ScanIcon />
+                  <ScanIcon className="size-5" />
                 </div>
               </div>
             </DialogTrigger>

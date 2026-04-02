@@ -15,13 +15,9 @@ function RouteComponent() {
         <MetadataCards />
       </section>
 
-      <section className="space-y-5">
-        <h2 className="ml-2 text-xl font-semibold">Projetos</h2>
-
-        <Suspense fallback={<ProjectsGridSkeleton />}>
-          <ProjectsGrid />
-        </Suspense>
-      </section>
+      <Suspense fallback={<ProjectsGridSkeleton />}>
+        <ProjectsGrid />
+      </Suspense>
     </div>
   )
 }
