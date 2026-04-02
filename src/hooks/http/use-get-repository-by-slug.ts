@@ -1,12 +1,14 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
-import {
-  type GetRepositoryBySlugRequest,
-  getRepositoryBySlug,
-} from '@/http/get-repository-by-slug'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'sonner'
+import { getRepositoryBySlug } from '@/http/get-repository-by-slug'
+import { handleHttpError } from './errors/handle-http-error'
 
-export function useGetRepositoryBySlug(params: GetRepositoryBySlugRequest) {
-  return useSuspenseQuery({
-    queryKey: ['repository', params.slug],
-    queryFn: () => getRepositoryBySlug(params),
+export function useGetRepositoryBySlug() {
+  return useMutation({
+    mutationFn: getRepositoryBySlug,
+    onSuccess: () => {
+      toast.success('Repositório conectado')
+    },
+    onError: handleHttpError,
   })
 }

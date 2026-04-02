@@ -1,91 +1,55 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { AnimatePresence, motion } from 'motion/react'
-import { Suspense, useEffect, useState } from 'react'
-import { ProjectFormSkeleton } from '../-components/project-form-skeleton'
+import { useState } from 'react'
+import { useGetRepositoryBySlug } from '@/hooks/http/use-get-repository-by-slug'
 import { CreateProjectForm } from './-components/create-project-form'
-import { RepositoriesForm } from './-components/repositories-form'
-import { RepositoriesFormSkeleton } from './-components/repositories-form-skeleton'
+import { RepositorySlugForm } from './-components/repository-slug-form'
 
 export const Route = createFileRoute('/_app/projects/create/')({
   component: RouteComponent,
 })
 
-const titlesByStep = [
-  'Conecte seu repositório do github',
-  'Detalhe seu projeto',
-]
+interface RepositoryResponseData {
+  name: string
+  description: string | null
+  homepageUrl: string | null
+  githubUrl: string
+  techId: string | null
+}
+
+interface OnSubmitParams {
+  slug: string
+}
 
 function RouteComponent() {
-  const [step, setStep] = useState<number>(0)
+  const [repositoryResponseData, setRepositoryResponseData] =
+    useState<RepositoryResponseData>({
+      name: '',
+      githubUrl: '',
+      description: null,
+      homepageUrl: null,
+      techId: null,
+    })
 
-  function handleDecrementStep() {
-    if (step !== 1) {
-      return
-    }
+  const getRepositoryBySlug = useGetRepositoryBySlug()
 
-    setStep(step - 1)
+  async function onSubmit(params: OnSubmitParams) {
+    const { repository } = await getRepositoryBySlug.mutateAsync(params)
+
+    setRepositoryResponseData(repository)
   }
-
-  function handleIncrementStep() {
-    if (step !== 0) {
-      return
-    }
-
-    setStep(step + 1)
-  }
-
-  useEffect(() => {
-    return () => {
-      localStorage.removeItem('currentSlug')
-    }
-  }, [])
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-10">
-      <AnimatePresence mode="wait">
-        <motion.h2
-          key={step}
-          className="text-xl font-medium"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          {titlesByStep[step]}
-        </motion.h2>
-      </AnimatePresence>
+    <main className="w-full space-y-10">
+      <RepositorySlugForm
+        isPending={getRepositoryBySlug.isPending}
+        onSubmit={onSubmit}
+      />
 
-      <div className="w-full max-w-lg">
-        <AnimatePresence mode="wait">
-          {step === 0 && (
-            <motion.div
-              key="repositories-form"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Suspense fallback={<RepositoriesFormSkeleton />}>
-                <RepositoriesForm onSubmit={handleIncrementStep} />
-              </Suspense>
-            </motion.div>
-          )}
-
-          {step === 1 && (
-            <motion.div
-              key="project-form"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Suspense fallback={<ProjectFormSkeleton />}>
-                <CreateProjectForm onPrevious={handleDecrementStep} />
-              </Suspense>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
+      <CreateProjectForm
+        key={repositoryResponseData.githubUrl}
+        repository={repositoryResponseData}
+        disabled={!repositoryResponseData.githubUrl}
+      />
+    </main>
   )
 }

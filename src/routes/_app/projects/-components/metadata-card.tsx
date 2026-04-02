@@ -17,8 +17,8 @@ export function MetadataCard({
   return (
     <Card className="aspect-video">
       <CardHeader>
-        <div className="w-fit p-2 rounded-lg bg-primary/15">
-          <Icon className="size-8 text-primary" />
+        <div className="w-fit p-2 rounded-lg bg-muted">
+          <Icon className="size-6 text-primary" />
         </div>
         <CardTitle className="text-lg">{title}</CardTitle>
       </CardHeader>

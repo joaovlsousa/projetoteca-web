@@ -1,4 +1,4 @@
-import { FileArrowUpIcon, PlusIcon, StackPlusIcon } from '@phosphor-icons/react'
+import { FileCloudIcon, PlusIcon, StackPlusIcon } from '@phosphor-icons/react'
 import { Link } from '@tanstack/react-router'
 import { Card } from '@/components/ui/card'
 import { MetadataCard } from './metadata-card'
@@ -8,17 +8,17 @@ import { StorageMetadata } from './storage-metadata'
 export function MetadataCards() {
   return (
     <>
-      <Card className="p-0 aspect-video">
+      <Card className="p-0 aspect-video hover:ring-primary transition-all duration-300">
         <Link
           to="/projects/create"
-          className="h-full flex flex-col items-center justify-center gap-y-4"
+          className="h-full flex flex-col items-center justify-center gap-y-2"
         >
-          <PlusIcon />
-          <span className="font-medium">Criar novo projeto</span>
+          <PlusIcon className="size-4" weight="bold" />
+          <span className="font-semibold">Criar novo projeto</span>
         </Link>
       </Card>
 
-      <MetadataCard title="Armazenamento utilizado" icon={FileArrowUpIcon}>
+      <MetadataCard title="Armazenamento utilizado" icon={FileCloudIcon}>
         <StorageMetadata />
       </MetadataCard>
 

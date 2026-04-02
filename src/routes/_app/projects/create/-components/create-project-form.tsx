@@ -1,37 +1,46 @@
 import { useCreateProject } from '@/hooks/http/use-create-project'
-import { useGetRepositoryBySlug } from '@/hooks/http/use-get-repository-by-slug'
+import { cn } from '@/lib/utils'
 import { ProjectForm } from '../../-components/project-form'
 
 interface CreateProjectFormProps {
-  onPrevious: () => void
-}
-
-export function CreateProjectForm({ onPrevious }: CreateProjectFormProps) {
-  const slug = localStorage.getItem('currentSlug')
-
-  if (!slug) {
-    throw new Error('Project slug not found')
+  repository: {
+    name: string
+    description: string | null
+    homepageUrl: string | null
+    githubUrl: string
+    techId: string | null
   }
-
-  const {
-    data: { repository },
-  } = useGetRepositoryBySlug({ slug })
-
+  disabled?: boolean
+}
+export function CreateProjectForm({
+  repository,
+  disabled,
+}: CreateProjectFormProps) {
   const handleCreateProject = useCreateProject()
 
   return (
-    <ProjectForm
-      initialValues={{
-        name: repository.name,
-        description: repository.description,
-        githubUrl: repository.githubUrl,
-        deployUrl: repository.homepageUrl,
-        techsIds: repository.techId ? [repository.techId] : undefined,
-      }}
-      onSubmit={async (data) => {
-        await handleCreateProject.mutateAsync(data)
-      }}
-      onPrevious={onPrevious}
-    />
+    <section className="w-full p-6 space-y-6 rounded-lg bg-sidebar">
+      <h3
+        className={cn(
+          'text-lg font-semibold  transition-opacity duration-200',
+          disabled && 'opacity-20',
+        )}
+      >
+        Informações sobre o projeto
+      </h3>
+      <ProjectForm
+        initialValues={{
+          name: repository.name,
+          description: repository.description,
+          githubUrl: repository.githubUrl,
+          deployUrl: repository.homepageUrl,
+          techsIds: repository.techId ? [repository.techId] : undefined,
+        }}
+        onSubmit={async (data) => {
+          await handleCreateProject.mutateAsync(data)
+        }}
+        disabled={disabled}
+      />
+    </section>
   )
 }
