@@ -9,7 +9,7 @@ const RootLayout = () => (
     <TooltipProvider>
       <Outlet />
 
-      <Toaster position="top-center" theme="dark" richColors />
+      <Toaster position="top-center" richColors />
     </TooltipProvider>
   </QueryClientProvider>
 )

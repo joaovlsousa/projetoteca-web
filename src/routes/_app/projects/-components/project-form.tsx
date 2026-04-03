@@ -105,6 +105,8 @@ export function ProjectForm({
   const { name: watchedName, description: watchedDescription } = form.watch()
 
   function handleCheck(event: ChangeEvent<HTMLInputElement>) {
+    if (disabled) return
+
     if (event.target.checked && techsIdsCheckedList.length >= 10) {
       event.target.checked = false
 

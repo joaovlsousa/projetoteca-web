@@ -10,7 +10,7 @@ export function useUpdateProfileStatus() {
   return useMutation({
     mutationFn: updateProfileStatus,
     onSuccess: async (_, { isPublicProfile }) => {
-      toast.success(
+      toast.info(
         isPublicProfile
           ? 'Seu perfil agora é público'
           : 'Seu perfil agora é privado',

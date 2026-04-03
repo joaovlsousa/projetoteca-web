@@ -1,9 +1,20 @@
-import { CopyIcon, EyeSlashIcon, InfoIcon } from '@phosphor-icons/react'
-import { useState, useTransition } from 'react'
+import {
+  CopyIcon,
+  EyeSlashIcon,
+  FloppyDiskIcon,
+  InfoIcon,
+} from '@phosphor-icons/react'
+import { type ChangeEvent, useState, useTransition } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { Field, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from '@/components/ui/input-group'
 import { Switch } from '@/components/ui/switch'
 import { env } from '@/config/env'
 import { useGetProfile } from '@/hooks/http/use-get-profile'
@@ -19,11 +30,18 @@ export function ProfileSettings() {
   const [isPublicProfileChecked, setIsPublicProfileChecked] = useState<boolean>(
     user.isPublicProfile,
   )
+  const [name, setName] = useState<string>(user.name)
   const [isCopyPending, startTransition] = useTransition()
 
   const publicProfileUrl = isPublicProfileChecked
     ? `${env.VITE_APP_URL}/${user.username}`
     : null
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setName(event.target.value)
+  }
+
+  async function handleSave() {}
 
   function handleCopyPublicProfileUrl() {
     startTransition(async () => {
@@ -42,29 +60,37 @@ export function ProfileSettings() {
   }
 
   return (
-    <div className="flex flex-col items-center space-y-10">
-      <section id="profileInfo" className="w-full max-w-lg space-y-4">
+    <div className="max-w-lg space-y-10">
+      <section id="profileInfo" className="space-y-4">
         <div className="flex items-center gap-x-2">
           <InfoIcon className="size-5" />
           <h2 className="text-xl font-medium">Informações pessoais</h2>
         </div>
 
-        <div className="space-y-1">
-          <Label>Nome</Label>
-          <Input disabled value={user.name} className="disabled:opacity-100" />
-        </div>
+        <Field>
+          <FieldLabel>Nome</FieldLabel>
+          <InputGroup>
+            <InputGroupInput value={name} onChange={handleChange} />
+            <InputGroupAddon align="inline-end">
+              <InputGroupButton
+                variant="default"
+                onClick={handleSave}
+                disabled={user.name === name.trim()}
+              >
+                <FloppyDiskIcon className="size-3.5" />
+                <span>Salvar</span>
+              </InputGroupButton>
+            </InputGroupAddon>
+          </InputGroup>
+        </Field>
 
-        <div className="space-y-1">
-          <Label>Username</Label>
-          <Input
-            disabled
-            value={user.username}
-            className="disabled:opacity-100"
-          />
-        </div>
+        <Field>
+          <FieldLabel>Nome de usuário</FieldLabel>
+          <Input disabled value={user.username} className="" />
+        </Field>
       </section>
 
-      <section id="privacySettings" className="w-full max-w-lg space-y-4">
+      <section id="privacySettings" className="space-y-4">
         <div className="flex items-center gap-x-2">
           <EyeSlashIcon className="size-5" />
           <h2 className="text-xl font-medium">Configurações de privacidade</h2>

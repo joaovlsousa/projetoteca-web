@@ -9,8 +9,10 @@ export const Route = createFileRoute('/_app/profile/')({
 
 function RouteComponent() {
   return (
-    <Suspense fallback={<ProfileSettingsSkeleton />}>
-      <ProfileSettings />
-    </Suspense>
+    <main className="w-full p-6 space-y-10 rounded-lg bg-sidebar">
+      <Suspense fallback={<ProfileSettingsSkeleton />}>
+        <ProfileSettings />
+      </Suspense>
+    </main>
   )
 }
