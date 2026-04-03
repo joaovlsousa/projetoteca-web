@@ -238,6 +238,7 @@ export function ProjectForm({
                   type="checkbox"
                   id={tech.id}
                   value={tech.id}
+                  defaultChecked={techsIdsCheckedList.includes(tech.id)}
                   onChange={handleCheck}
                   className="invisible"
                 />

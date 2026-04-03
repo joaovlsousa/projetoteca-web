@@ -11,14 +11,12 @@ function RouteComponent() {
   const { projectId } = Route.useParams()
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-10">
-      <h2 className="text-xl font-medium">Atualizar projeto</h2>
+    <main className="w-full p-6 space-y-6 rounded-lg bg-sidebar">
+      <h2 className="text-lg font-semibold">Atualizar projeto</h2>
 
-      <div className="w-full max-w-lg">
-        <Suspense fallback={<ProjectFormSkeleton />}>
-          <EditProjectForm projectId={projectId} />
-        </Suspense>
-      </div>
-    </div>
+      <Suspense fallback={<ProjectFormSkeleton />}>
+        <EditProjectForm projectId={projectId} />
+      </Suspense>
+    </main>
   )
 }

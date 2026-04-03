@@ -39,6 +39,7 @@ export function EditProjectForm({ projectId }: EditProjectFormProps) {
       initialValues={initialValues}
       onSubmit={async (data) => {
         if (compareObjectValues(data, initialValues)) {
+          toast.info('Não há nada a ser atualizado')
           return
         }
 

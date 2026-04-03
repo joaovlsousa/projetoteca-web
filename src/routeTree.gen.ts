@@ -16,7 +16,6 @@ import { Route as AppProfileIndexRouteImport } from './routes/_app/profile/index
 import { Route as AuthCallbackGithubRouteRouteImport } from './routes/auth/callback/github/route'
 import { Route as AppProjectsCreateIndexRouteImport } from './routes/_app/projects/create/index'
 import { Route as AppProjectsProjectIdEditIndexRouteImport } from './routes/_app/projects/$projectId/edit/index'
-import { Route as AppProjectsProjectIdEditImageIndexRouteImport } from './routes/_app/projects/$projectId/edit/image/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -53,12 +52,6 @@ const AppProjectsProjectIdEditIndexRoute =
     path: '/projects/$projectId/edit/',
     getParentRoute: () => AppRouteRoute,
   } as any)
-const AppProjectsProjectIdEditImageIndexRoute =
-  AppProjectsProjectIdEditImageIndexRouteImport.update({
-    id: '/projects/$projectId/edit/image/',
-    path: '/projects/$projectId/edit/image/',
-    getParentRoute: () => AppRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +60,6 @@ export interface FileRoutesByFullPath {
   '/projects': typeof AppProjectsIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
   '/projects/$projectId/edit': typeof AppProjectsProjectIdEditIndexRoute
-  '/projects/$projectId/edit/image': typeof AppProjectsProjectIdEditImageIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,7 +68,6 @@ export interface FileRoutesByTo {
   '/projects': typeof AppProjectsIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
   '/projects/$projectId/edit': typeof AppProjectsProjectIdEditIndexRoute
-  '/projects/$projectId/edit/image': typeof AppProjectsProjectIdEditImageIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,7 +78,6 @@ export interface FileRoutesById {
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/_app/projects/create/': typeof AppProjectsCreateIndexRoute
   '/_app/projects/$projectId/edit/': typeof AppProjectsProjectIdEditIndexRoute
-  '/_app/projects/$projectId/edit/image/': typeof AppProjectsProjectIdEditImageIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,7 +88,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/create'
     | '/projects/$projectId/edit'
-    | '/projects/$projectId/edit/image'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -107,7 +96,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/create'
     | '/projects/$projectId/edit'
-    | '/projects/$projectId/edit/image'
   id:
     | '__root__'
     | '/'
@@ -117,7 +105,6 @@ export interface FileRouteTypes {
     | '/_app/projects/'
     | '/_app/projects/create/'
     | '/_app/projects/$projectId/edit/'
-    | '/_app/projects/$projectId/edit/image/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -177,13 +164,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProjectsProjectIdEditIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/projects/$projectId/edit/image/': {
-      id: '/_app/projects/$projectId/edit/image/'
-      path: '/projects/$projectId/edit/image'
-      fullPath: '/projects/$projectId/edit/image'
-      preLoaderRoute: typeof AppProjectsProjectIdEditImageIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
   }
 }
 
@@ -192,7 +172,6 @@ interface AppRouteRouteChildren {
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
   AppProjectsCreateIndexRoute: typeof AppProjectsCreateIndexRoute
   AppProjectsProjectIdEditIndexRoute: typeof AppProjectsProjectIdEditIndexRoute
-  AppProjectsProjectIdEditImageIndexRoute: typeof AppProjectsProjectIdEditImageIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
@@ -200,8 +179,6 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppProjectsIndexRoute: AppProjectsIndexRoute,
   AppProjectsCreateIndexRoute: AppProjectsCreateIndexRoute,
   AppProjectsProjectIdEditIndexRoute: AppProjectsProjectIdEditIndexRoute,
-  AppProjectsProjectIdEditImageIndexRoute:
-    AppProjectsProjectIdEditImageIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
