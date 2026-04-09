@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import type { GetProfileResponse } from '@/http/get-profile'
+import type { GetProfileStatusResponse } from '@/http/get-profile-status'
 import { updateProfileStatus } from '@/http/update-profile-status'
 import { handleHttpError } from './errors/handle-http-error'
 
@@ -16,16 +16,13 @@ export function useUpdateProfileStatus() {
           : 'Seu perfil agora é privado',
       )
 
-      queryClient.setQueryData<GetProfileResponse>(
-        ['profile'],
+      queryClient.setQueryData<GetProfileStatusResponse>(
+        ['profile', 'status'],
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 
-          const updatedQueryData: GetProfileResponse = {
-            user: {
-              ...oldQueryData.user,
-              isPublicProfile,
-            },
+          const updatedQueryData: GetProfileStatusResponse = {
+            isPublicProfile,
           }
 
           return updatedQueryData

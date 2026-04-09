@@ -5,7 +5,6 @@ export interface GetProfileResponse {
     name: string
     username: string
     avatarUrl: string
-    isPublicProfile: boolean
   }
 }
 
