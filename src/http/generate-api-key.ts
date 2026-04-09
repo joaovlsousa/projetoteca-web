@@ -1,7 +1,7 @@
 import { api } from '@/lib/axios'
 
 export interface GenerateApiKeyResponse {
-  apiKey: string | null
+  apiKey: string
 }
 
 export async function generateApiKey(): Promise<GenerateApiKeyResponse> {

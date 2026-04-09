@@ -13,6 +13,7 @@ import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
 import { Route as AppProfileIndexRouteImport } from './routes/_app/profile/index'
+import { Route as AppConnectPortfolioIndexRouteImport } from './routes/_app/connect-portfolio/index'
 import { Route as AuthCallbackGithubRouteRouteImport } from './routes/auth/callback/github/route'
 import { Route as AppProjectsCreateIndexRouteImport } from './routes/_app/projects/create/index'
 import { Route as AppProjectsProjectIdEditIndexRouteImport } from './routes/_app/projects/$projectId/edit/index'
@@ -36,6 +37,12 @@ const AppProfileIndexRoute = AppProfileIndexRouteImport.update({
   path: '/profile/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppConnectPortfolioIndexRoute =
+  AppConnectPortfolioIndexRouteImport.update({
+    id: '/connect-portfolio/',
+    path: '/connect-portfolio/',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 const AuthCallbackGithubRouteRoute = AuthCallbackGithubRouteRouteImport.update({
   id: '/auth/callback/github',
   path: '/auth/callback/github',
@@ -56,6 +63,7 @@ const AppProjectsProjectIdEditIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth/callback/github': typeof AuthCallbackGithubRouteRoute
+  '/connect-portfolio': typeof AppConnectPortfolioIndexRoute
   '/profile': typeof AppProfileIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
@@ -64,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/callback/github': typeof AuthCallbackGithubRouteRoute
+  '/connect-portfolio': typeof AppConnectPortfolioIndexRoute
   '/profile': typeof AppProfileIndexRoute
   '/projects': typeof AppProjectsIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
@@ -74,6 +83,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteRouteWithChildren
   '/auth/callback/github': typeof AuthCallbackGithubRouteRoute
+  '/_app/connect-portfolio/': typeof AppConnectPortfolioIndexRoute
   '/_app/profile/': typeof AppProfileIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
   '/_app/projects/create/': typeof AppProjectsCreateIndexRoute
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth/callback/github'
+    | '/connect-portfolio'
     | '/profile'
     | '/projects'
     | '/projects/create'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth/callback/github'
+    | '/connect-portfolio'
     | '/profile'
     | '/projects'
     | '/projects/create'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_app'
     | '/auth/callback/github'
+    | '/_app/connect-portfolio/'
     | '/_app/profile/'
     | '/_app/projects/'
     | '/_app/projects/create/'
@@ -143,6 +156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProfileIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/connect-portfolio/': {
+      id: '/_app/connect-portfolio/'
+      path: '/connect-portfolio'
+      fullPath: '/connect-portfolio'
+      preLoaderRoute: typeof AppConnectPortfolioIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/auth/callback/github': {
       id: '/auth/callback/github'
       path: '/auth/callback/github'
@@ -168,6 +188,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteRouteChildren {
+  AppConnectPortfolioIndexRoute: typeof AppConnectPortfolioIndexRoute
   AppProfileIndexRoute: typeof AppProfileIndexRoute
   AppProjectsIndexRoute: typeof AppProjectsIndexRoute
   AppProjectsCreateIndexRoute: typeof AppProjectsCreateIndexRoute
@@ -175,6 +196,7 @@ interface AppRouteRouteChildren {
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppConnectPortfolioIndexRoute: AppConnectPortfolioIndexRoute,
   AppProfileIndexRoute: AppProfileIndexRoute,
   AppProjectsIndexRoute: AppProjectsIndexRoute,
   AppProjectsCreateIndexRoute: AppProjectsCreateIndexRoute,

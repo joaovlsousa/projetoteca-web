@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 @import "@fontsource/ibm-plex-mono/400-italic.css";
+@import "@fontsource/jetbrains-mono";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -99,6 +100,7 @@
   --shadow-2xl: 0px 1px 0px 0px hsl(0 0% 0% / 0);
 
   --font-logo: "IBM Plex Mono";
+  --font-mono: "JetBrains Mono";
 }
 
 @theme inline {

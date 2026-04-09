@@ -1,4 +1,4 @@
-import { FolderOpenIcon, UserGearIcon } from '@phosphor-icons/react'
+import { FolderOpenIcon, PlugsIcon, UserGearIcon } from '@phosphor-icons/react'
 import { Link, useLocation } from '@tanstack/react-router'
 import { Logo } from './logo'
 import { ProfileInfo } from './profile-info'
@@ -12,6 +12,11 @@ const links = [
     name: 'Projetos',
     href: '/projects',
     icon: FolderOpenIcon,
+  },
+  {
+    name: 'Conectar portfólio',
+    href: '/connect-portfolio',
+    icon: PlugsIcon,
   },
   {
     name: 'Perfil',

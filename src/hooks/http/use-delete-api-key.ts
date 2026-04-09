@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { deleteApiKey } from '@/http/delete-api-key'
 import type { GetApiKeyResponse } from '@/http/get-api-key'
+import { queryKeys } from './_query-keys'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useDeleteApiKey() {
@@ -10,10 +11,10 @@ export function useDeleteApiKey() {
   return useMutation({
     mutationFn: deleteApiKey,
     onSuccess: async () => {
-      toast.success('API Key gerada com sucesso')
+      toast.success('Chave de API excluída com sucesso')
 
       queryClient.setQueryData<GetApiKeyResponse>(
-        ['apiKey'],
+        queryKeys.getApiKey,
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 
