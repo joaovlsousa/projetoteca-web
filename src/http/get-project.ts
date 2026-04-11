@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios'
 
-interface GetProjectRequest {
+export interface GetProjectRequest {
   projectId: string
 }
 

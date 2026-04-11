@@ -1,4 +1,6 @@
+import { Link } from '@tanstack/react-router'
 import { motion } from 'motion/react'
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 function LogoSvg() {
   return (
@@ -17,18 +19,40 @@ function LogoSvg() {
   )
 }
 
-export function Logo() {
+interface LogoProps {
+  side?: 'right' | 'left' | 'top' | 'bottom'
+  sideOffset?: number
+  hideTooltip?: boolean
+}
+
+export function Logo({ side, sideOffset, hideTooltip = false }: LogoProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex items-center gap-x-1"
     >
-      <LogoSvg />
+      {hideTooltip ? (
+        <Link to="/" className="flex items-center gap-x-1">
+          <LogoSvg />
 
-      <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
+          <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
+        </Link>
+      ) : (
+        <Tooltip>
+          <TooltipTrigger>
+            <Link to="/" className="flex items-center gap-x-1">
+              <LogoSvg />
+
+              <h1 className="text-xl font-logo tracking-wider">Projetoteca</h1>
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent side={side} sideOffset={sideOffset}>
+            Ir para a tela inicial
+          </TooltipContent>
+        </Tooltip>
+      )}
     </motion.div>
   )
 }

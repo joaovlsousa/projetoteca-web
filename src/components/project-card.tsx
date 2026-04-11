@@ -20,8 +20,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { ProjectSettings } from './project-settings'
-import { UploadProjectImageModal } from './upload-project-image-modal'
+import { ProjectSettings } from '../routes/_app/projects/-components/project-settings'
+import { UploadProjectImageModal } from '../routes/_app/projects/-components/upload-project-image-modal'
 
 interface ProjectCardProps {
   project: {
@@ -40,9 +40,13 @@ interface ProjectCardProps {
     createdAt: string
     updatedAt: string | null
   }
+  isPublicProject?: boolean
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  isPublicProject = false,
+}: ProjectCardProps) {
   return (
     <Card className="flex flex-col p-0 space-y-2 pb-3 rounded-md border-0 shadow-none overflow-hidden">
       <CardContent className="px-0 flex-1 space-y-2">
@@ -70,6 +74,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
               />
             </DialogContent>
           </Dialog>
+        ) : isPublicProject ? (
+          <div className="w-full flex items-center justify-center rounded-t-md bg-secondary aspect-video cursor-pointer">
+            <span className="text-sm font-medium text-muted-foreground">
+              Projeto sem imagem
+            </span>
+          </div>
         ) : (
           <UploadProjectImageModal projectId={project.id}>
             <div className="w-full flex items-center justify-center rounded-t-md bg-secondary aspect-video cursor-pointer">
@@ -136,11 +146,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </TooltipProvider>
         )}
 
-        <ProjectSettings
-          projectId={project.id}
-          createdAt={project.createdAt}
-          updatedAt={project.updatedAt}
-        />
+        {!isPublicProject && (
+          <ProjectSettings
+            projectId={project.id}
+            createdAt={project.createdAt}
+            updatedAt={project.updatedAt}
+          />
+        )}
       </CardFooter>
     </Card>
   )

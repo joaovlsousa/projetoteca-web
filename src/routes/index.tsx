@@ -18,7 +18,7 @@ function Index() {
       <main className="max-w-5xl mx-auto space-y-14 py-24">
         <section className="space-y-8 max-w-xl mx-auto">
           <header className="flex items-center justify-center">
-            <Logo />
+            <Logo hideTooltip />
           </header>
           <div className="space-y-6">
             <motion.h2

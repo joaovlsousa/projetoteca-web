@@ -1,13 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { getProject } from '@/http/get-project'
-
-interface GetProjectRequest {
-  projectId: string
-}
+import { type GetProjectRequest, getProject } from '@/http/get-project'
+import { queryKeys } from './_query-keys'
 
 export function useGetProject({ projectId }: GetProjectRequest) {
   return useSuspenseQuery({
-    queryKey: ['project', projectId],
+    queryKey: [...queryKeys.getProjects, projectId],
     queryFn: async () => await getProject({ projectId }),
   })
 }

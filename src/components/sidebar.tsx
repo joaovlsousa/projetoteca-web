@@ -1,11 +1,10 @@
 import { FolderOpenIcon, PlugsIcon, UserGearIcon } from '@phosphor-icons/react'
-import { Link, useLocation } from '@tanstack/react-router'
+import { useLocation } from '@tanstack/react-router'
 import { Logo } from './logo'
 import { ProfileInfo } from './profile-info'
 import { SidebarNavItem } from './sidebar-nav-item'
 import { SignOutButton } from './sign-out-button'
 import { Separator } from './ui/separator'
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 const links = [
   {
@@ -31,16 +30,7 @@ export function Sidebar() {
   return (
     <aside className="fixed inset-0 w-64 p-4 flex flex-col items-stretch space-y-10 bg-sidebar border-r">
       <header>
-        <Tooltip>
-          <TooltipTrigger>
-            <Link to="/">
-              <Logo />
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right" sideOffset={10}>
-            Ir para a tela inicial
-          </TooltipContent>
-        </Tooltip>
+        <Logo side="right" sideOffset={10} />
       </header>
 
       <main className="flex-1 space-y-2">

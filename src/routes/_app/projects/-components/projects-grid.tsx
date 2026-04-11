@@ -1,5 +1,5 @@
+import { ProjectCard } from '@/components/project-card'
 import { useGetProjects } from '@/hooks/http/use-get-projects'
-import { ProjectCard } from './project-card'
 
 export function ProjectsGrid() {
   const {

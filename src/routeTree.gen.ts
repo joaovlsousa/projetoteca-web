@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PublicUsernameIndexRouteImport } from './routes/_public/$username/index'
 import { Route as AppProjectsIndexRouteImport } from './routes/_app/projects/index'
 import { Route as AppProfileIndexRouteImport } from './routes/_app/profile/index'
 import { Route as AppConnectPortfolioIndexRouteImport } from './routes/_app/connect-portfolio/index'
@@ -25,6 +26,11 @@ const AppRouteRoute = AppRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicUsernameIndexRoute = PublicUsernameIndexRouteImport.update({
+  id: '/_public/$username/',
+  path: '/$username/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppProjectsIndexRoute = AppProjectsIndexRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/connect-portfolio': typeof AppConnectPortfolioIndexRoute
   '/profile': typeof AppProfileIndexRoute
   '/projects': typeof AppProjectsIndexRoute
+  '/$username': typeof PublicUsernameIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
   '/projects/$projectId/edit': typeof AppProjectsProjectIdEditIndexRoute
 }
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/connect-portfolio': typeof AppConnectPortfolioIndexRoute
   '/profile': typeof AppProfileIndexRoute
   '/projects': typeof AppProjectsIndexRoute
+  '/$username': typeof PublicUsernameIndexRoute
   '/projects/create': typeof AppProjectsCreateIndexRoute
   '/projects/$projectId/edit': typeof AppProjectsProjectIdEditIndexRoute
 }
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/_app/connect-portfolio/': typeof AppConnectPortfolioIndexRoute
   '/_app/profile/': typeof AppProfileIndexRoute
   '/_app/projects/': typeof AppProjectsIndexRoute
+  '/_public/$username/': typeof PublicUsernameIndexRoute
   '/_app/projects/create/': typeof AppProjectsCreateIndexRoute
   '/_app/projects/$projectId/edit/': typeof AppProjectsProjectIdEditIndexRoute
 }
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/connect-portfolio'
     | '/profile'
     | '/projects'
+    | '/$username'
     | '/projects/create'
     | '/projects/$projectId/edit'
   fileRoutesByTo: FileRoutesByTo
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/connect-portfolio'
     | '/profile'
     | '/projects'
+    | '/$username'
     | '/projects/create'
     | '/projects/$projectId/edit'
   id:
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/_app/connect-portfolio/'
     | '/_app/profile/'
     | '/_app/projects/'
+    | '/_public/$username/'
     | '/_app/projects/create/'
     | '/_app/projects/$projectId/edit/'
   fileRoutesById: FileRoutesById
@@ -124,6 +136,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRouteRoute: typeof AppRouteRouteWithChildren
   AuthCallbackGithubRouteRoute: typeof AuthCallbackGithubRouteRoute
+  PublicUsernameIndexRoute: typeof PublicUsernameIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -140,6 +153,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_public/$username/': {
+      id: '/_public/$username/'
+      path: '/$username'
+      fullPath: '/$username'
+      preLoaderRoute: typeof PublicUsernameIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app/projects/': {
@@ -211,6 +231,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRouteRoute: AppRouteRouteWithChildren,
   AuthCallbackGithubRouteRoute: AuthCallbackGithubRouteRoute,
+  PublicUsernameIndexRoute: PublicUsernameIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
