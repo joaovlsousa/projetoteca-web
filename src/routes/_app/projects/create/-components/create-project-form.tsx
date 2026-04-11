@@ -8,7 +8,7 @@ interface CreateProjectFormProps {
     description: string | null
     homepageUrl: string | null
     githubUrl: string
-    techId: string | null
+    techsIds: string[]
   }
   disabled?: boolean
 }
@@ -34,7 +34,7 @@ export function CreateProjectForm({
           description: repository.description,
           githubUrl: repository.githubUrl,
           deployUrl: repository.homepageUrl,
-          techsIds: repository.techId ? [repository.techId] : undefined,
+          techsIds: repository.techsIds,
         }}
         onSubmit={async (data) => {
           await handleCreateProject.mutateAsync(data)

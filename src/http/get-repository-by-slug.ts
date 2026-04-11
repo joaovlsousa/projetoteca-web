@@ -10,7 +10,7 @@ export interface GetRepositoryBySlugResponse {
     description: string | null
     homepageUrl: string | null
     githubUrl: string
-    techId: string | null
+    techsIds: string[]
   }
 }
 

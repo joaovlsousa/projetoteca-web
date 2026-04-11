@@ -72,7 +72,7 @@ interface ProjectFormProps {
     type?: 'frontend' | 'backend' | 'fullstack'
     githubUrl?: string | null
     deployUrl?: string | null
-    techsIds?: string[]
+    techsIds: string[]
   }
   onSubmit: (values: FormValues) => Promise<void> | void
   disabled?: boolean
@@ -88,7 +88,7 @@ export function ProjectForm({
   } = useGetTechs()
 
   const [techsIdsCheckedList, setTechsIdsCheckedList] = useState<string[]>(
-    initialValues.techsIds ?? [],
+    initialValues.techsIds,
   )
 
   const form = useForm<FormValues>({
@@ -138,7 +138,7 @@ export function ProjectForm({
       onSubmit={form.handleSubmit(handleSubmit)}
       className={cn(
         'space-y-6 max-w-2/3 transition-opacity duration-200',
-        disabled && 'opacity-20',
+        disabled && 'opacity-20 pointer-events-none',
       )}
     >
       <FieldGroup>

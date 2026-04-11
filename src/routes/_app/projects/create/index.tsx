@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 import { useGetRepositoryBySlug } from '@/hooks/http/use-get-repository-by-slug'
+import type { GetRepositoryBySlugResponse } from '@/http/get-repository-by-slug'
 import { CreateProjectForm } from './-components/create-project-form'
 import { RepositorySlugForm } from './-components/repository-slug-form'
 
@@ -8,27 +9,20 @@ export const Route = createFileRoute('/_app/projects/create/')({
   component: RouteComponent,
 })
 
-interface RepositoryResponseData {
-  name: string
-  description: string | null
-  homepageUrl: string | null
-  githubUrl: string
-  techId: string | null
-}
-
 interface OnSubmitParams {
   slug: string
 }
 
 function RouteComponent() {
-  const [repositoryResponseData, setRepositoryResponseData] =
-    useState<RepositoryResponseData>({
-      name: '',
-      githubUrl: '',
-      description: null,
-      homepageUrl: null,
-      techId: null,
-    })
+  const [repositoryResponseData, setRepositoryResponseData] = useState<
+    GetRepositoryBySlugResponse['repository']
+  >({
+    name: '',
+    githubUrl: '',
+    description: null,
+    homepageUrl: null,
+    techsIds: [],
+  })
 
   const getRepositoryBySlug = useGetRepositoryBySlug()
 
