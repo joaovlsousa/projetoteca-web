@@ -3,6 +3,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { useAuth } from '@/hooks/use-auth'
 import { getProjects } from '@/http/get-projects'
 import { signInWithGithub } from '@/http/sign-in-with-github'
+import { queryKeys } from './_query-keys'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useSignInWithGithub() {
@@ -16,7 +17,7 @@ export function useSignInWithGithub() {
       saveToken(token)
 
       await queryClient.prefetchQuery({
-        queryKey: ['projects'],
+        queryKey: queryKeys.getProjects,
         queryFn: getProjects,
       })
 

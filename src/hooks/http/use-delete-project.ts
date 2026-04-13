@@ -3,6 +3,7 @@ import { toast } from 'sonner'
 import { deleteProject } from '@/http/delete-project'
 import type { GetProjectsResponse } from '@/http/get-projects'
 import type { GetProjectsMetadataResponse } from '@/http/get-projects-metadata'
+import { queryKeys } from './_query-keys'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useDeleteProject() {
@@ -14,7 +15,7 @@ export function useDeleteProject() {
       toast.success('Projeto excluído')
 
       queryClient.setQueryData<GetProjectsResponse>(
-        ['projects'],
+        queryKeys.getProjects,
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 
@@ -29,7 +30,7 @@ export function useDeleteProject() {
       )
 
       queryClient.setQueryData<GetProjectsMetadataResponse>(
-        ['projects', 'metadata'],
+        queryKeys.getProjectsMetadata,
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 
@@ -46,7 +47,7 @@ export function useDeleteProject() {
       )
 
       await queryClient.invalidateQueries({
-        queryKey: ['storage', 'metadata'],
+        queryKey: queryKeys.getStorageMetadata,
       })
     },
     onError: handleHttpError,

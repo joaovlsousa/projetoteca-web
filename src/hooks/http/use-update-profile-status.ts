@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import type { GetProfileStatusResponse } from '@/http/get-profile-status'
 import { updateProfileStatus } from '@/http/update-profile-status'
+import { queryKeys } from './_query-keys'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useUpdateProfileStatus() {
@@ -17,7 +18,7 @@ export function useUpdateProfileStatus() {
       )
 
       queryClient.setQueryData<GetProfileStatusResponse>(
-        ['profile', 'status'],
+        queryKeys.getProfileStatus,
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 

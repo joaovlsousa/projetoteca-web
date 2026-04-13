@@ -3,6 +3,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import { editProject } from '@/http/edit-project'
 import type { GetProjectResponse } from '@/http/get-project'
+import { queryKeys } from './_query-keys'
 import { handleHttpError } from './errors/handle-http-error'
 
 export function useEditProject() {
@@ -15,7 +16,7 @@ export function useEditProject() {
       toast.success('Projeto atualizado')
 
       queryClient.setQueryData<GetProjectResponse>(
-        ['project', projectId],
+        [...queryKeys.getProjects, projectId],
         (oldQueryData) => {
           if (!oldQueryData) return oldQueryData
 
@@ -33,7 +34,7 @@ export function useEditProject() {
       )
 
       await queryClient.invalidateQueries({
-        queryKey: ['projects'],
+        queryKey: queryKeys.getProjects,
         exact: true,
       })
 
