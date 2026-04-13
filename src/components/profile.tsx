@@ -1,7 +1,7 @@
 import { useGetProfile } from '@/hooks/http/use-get-profile'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
-export function ProfileInfo() {
+export function Profile() {
   const {
     data: { user },
   } = useGetProfile()

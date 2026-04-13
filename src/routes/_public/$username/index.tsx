@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Suspense } from 'react'
 import { Logo } from '@/components/logo'
 import { PublicProjectsGrid } from './-components/public-projects-grid'
+import { PublicProjectsGridSkeleton } from './-components/public-projects-grid-skeleton'
 
 export const Route = createFileRoute('/_public/$username/')({
   component: RouteComponent,
@@ -17,7 +19,9 @@ function RouteComponent() {
         </header>
       </section>
 
-      <PublicProjectsGrid username={username} />
+      <Suspense fallback={<PublicProjectsGridSkeleton />}>
+        <PublicProjectsGrid username={username} />
+      </Suspense>
     </main>
   )
 }

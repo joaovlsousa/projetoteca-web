@@ -16,7 +16,9 @@ export function PublicProjectsGrid({ username }: PublicProjectsGridProps) {
       <div className="flex flex-col items-center space-y-5">
         <Avatar className="size-40">
           <AvatarImage src={user.avatarUrl} />
-          <AvatarFallback>{user.name[0].toUpperCase()}</AvatarFallback>
+          <AvatarFallback className="text-base">
+            {user.name[0].toUpperCase()}
+          </AvatarFallback>
         </Avatar>
 
         <div className="text-center">

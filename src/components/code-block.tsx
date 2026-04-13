@@ -4,6 +4,7 @@ import { codeToHtml } from 'shiki'
 import { toast } from 'sonner'
 import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
+import { Skeleton } from './ui/skeleton'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 
 interface CodeBlockProps extends ComponentProps<'div'> {
@@ -31,6 +32,10 @@ export function CodeBlock({
     await window.navigator.clipboard.writeText(code)
 
     toast.success('Código copiado com sucesso')
+  }
+
+  if (!parsedCode) {
+    return <Skeleton className="w-full h-40" />
   }
 
   return (

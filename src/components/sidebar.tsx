@@ -1,7 +1,9 @@
 import { FolderOpenIcon, PlugsIcon, UserGearIcon } from '@phosphor-icons/react'
 import { useLocation } from '@tanstack/react-router'
+import { Suspense } from 'react'
 import { Logo } from './logo'
-import { ProfileInfo } from './profile-info'
+import { Profile } from './profile'
+import { ProfileSkeleton } from './profile-skeleton'
 import { SidebarNavItem } from './sidebar-nav-item'
 import { SignOutButton } from './sign-out-button'
 import { Separator } from './ui/separator'
@@ -53,7 +55,9 @@ export function Sidebar() {
       </main>
 
       <footer className="w-full flex items-center gap-x-2">
-        <ProfileInfo />
+        <Suspense fallback={<ProfileSkeleton />}>
+          <Profile />
+        </Suspense>
         <Separator orientation="vertical" />
         <SignOutButton />
       </footer>
